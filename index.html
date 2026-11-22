@@ -1,0 +1,2443 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>石和温泉 日帰り旅のしおり</title>
+  <style>
+    :root {
+      --kinari: #FAF7F2;
+      --kinari-deep: #EFE8DC;
+      --bordeaux: #7A233A;
+      --bordeaux-dark: #5B182A;
+      --matcha: #3E5E47;
+      --gold: #9E7108;
+      --gold-light: #F3D78B;
+      --sumi: #221E1B;
+      --sumi-light: #554D48;
+      --border-warm: #DDD3C4;
+      --white: #FFFFFF;
+      --bus-blue: #1D4E89;
+      --bus-bg: #EBF3FC;
+      --font-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      font-size: 16px;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-text-size-adjust: 100%;
+      background-color: #E4DDD1;
+      color: var(--sumi);
+    }
+    html.font-large { font-size: 19px; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      background-color: #E4DDD1;
+      color: var(--sumi);
+      overflow-x: hidden;
+    }
+
+    button, select, input, a { font-family: inherit; color: inherit; }
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    h1, h2, h3, p { margin: 0; }
+    .hidden { display: none !important; }
+
+    .app-shell {
+      max-width: 480px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0 auto;
+      background-color: var(--kinari);
+      box-shadow: 0 0 36px rgba(34, 30, 27, 0.14);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ヘッダー */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background-color: var(--bordeaux);
+      color: var(--kinari);
+      padding: 12px 16px;
+      box-shadow: 0 3px 10px rgba(34, 30, 27, 0.16);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .header-title-wrap { min-width: 0; }
+    .header-sub {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--gold-light);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .header-title {
+      font-family: var(--font-serif);
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .header-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .header-btn {
+      min-height: 44px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: var(--kinari);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-btn:active { transform: scale(0.96); }
+    .header-btn-small { font-size: 0.65rem; opacity: 0.92; line-height: 1.1; }
+    .header-btn-val { font-size: 0.85rem; font-weight: 700; color: var(--gold-light); line-height: 1.2; margin-top: 2px; }
+    .header-btn-val.serif { font-family: var(--font-serif); font-size: 0.92rem; }
+
+    /* メイン */
+    .app-main { flex: 1; padding: 16px 16px 110px; }
+    .tab-panel { display: flex; flex-direction: column; gap: 16px; }
+
+    /* 共通カード */
+    .card {
+      background-color: var(--white);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid var(--border-warm);
+      box-shadow: 0 2px 6px rgba(34, 30, 27, 0.04);
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .section-title-group { display: flex; align-items: center; gap: 8px; min-width: 0; }
+    .section-bar { width: 6px; height: 20px; border-radius: 999px; background-color: var(--bordeaux); flex-shrink: 0; }
+    .section-bar.gold { background-color: var(--gold); }
+    .section-title { font-family: var(--font-serif); font-size: 1.02rem; font-weight: 700; color: var(--sumi); }
+    .pill-accent {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--bordeaux);
+      background-color: rgba(122, 35, 58, 0.1);
+      padding: 3px 10px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .sub-desc { font-size: 0.86rem; color: var(--sumi-light); margin-bottom: 12px; }
+
+    /* 到着時刻・ルート */
+    .dep-controls { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+    .dep-step-btn {
+      flex: 0.9;
+      min-height: 48px;
+      border-radius: 12px;
+      background-color: var(--kinari);
+      border: 1px solid var(--border-warm);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--sumi);
+    }
+    .dep-step-btn:active { transform: scale(0.97); }
+    .time-input {
+      flex: 1.4;
+      min-height: 48px;
+      padding: 0 10px;
+      border-radius: 12px;
+      background-color: var(--white);
+      border: 2px solid var(--bordeaux);
+      color: var(--bordeaux);
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-align: center;
+      color-scheme: light;
+    }
+    .route-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+    .route-opt {
+      width: 100%;
+      min-height: 58px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 2px solid var(--border-warm);
+      background-color: var(--kinari);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .route-opt.selected { border-color: var(--bordeaux); background-color: rgba(122, 35, 58, 0.06); }
+    .route-name { font-size: 0.92rem; font-weight: 700; color: var(--sumi); }
+    .route-meta { font-size: 0.82rem; color: var(--sumi-light); margin-top: 2px; }
+    .route-check {
+      width: 24px; height: 24px; border-radius: 999px;
+      border: 2px solid var(--border-warm); background-color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 0.85rem; font-weight: 700;
+    }
+    .route-opt.selected .route-check { background-color: var(--bordeaux); border-color: var(--bordeaux); color: var(--kinari); }
+
+    /* おすすめコース */
+    .preset-list { display: flex; flex-direction: column; gap: 10px; }
+    .preset-btn {
+      width: 100%;
+      min-height: 58px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background-color: var(--kinari);
+      border: 2px solid var(--border-warm);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .preset-btn:active { transform: scale(0.98); }
+    .preset-title { font-size: 0.94rem; font-weight: 700; line-height: 1.35; }
+    .preset-title.bordeaux { color: var(--bordeaux); }
+    .preset-title.matcha { color: var(--matcha); }
+    .preset-title.gold { color: var(--gold); }
+    .preset-route { font-size: 0.82rem; color: var(--sumi-light); margin-top: 3px; }
+    .preset-arrow { font-size: 0.86rem; font-weight: 700; flex-shrink: 0; }
+
+    /* 順番スロット */
+    .slot-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .slot-card {
+      background-color: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid var(--border-warm);
+      box-shadow: 0 2px 8px rgba(34, 30, 27, 0.05);
+    }
+    .slot-card.empty-slot {
+      border-style: dashed;
+      border-color: var(--bordeaux);
+      background-color: #FFFDF9;
+    }
+    .slot-bar { height: 6px; width: 100%; }
+    .bar-gourmet { background-color: var(--gold); }
+    .bar-onsen { background-color: var(--matcha); }
+    .bar-wine { background-color: var(--bordeaux); }
+    .bar-cafe { background-color: #8F5A4A; }
+    .bar-sightseeing { background-color: #3D5873; }
+    .bar-ashiyu { background-color: #A67328; }
+
+    .slot-body { padding: 16px; }
+    .slot-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .slot-order-badge { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .slot-num-pill {
+      padding: 4px 12px;
+      border-radius: 999px;
+      background-color: var(--bordeaux);
+      color: var(--kinari);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .slot-time-text {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--bordeaux);
+    }
+
+    /* 6カテゴリ選択グリッド */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .activity-btn {
+      min-height: 68px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background-color: var(--kinari);
+      border: 2px solid var(--border-warm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      text-align: center;
+    }
+    .activity-btn:active { transform: scale(0.97); }
+    .activity-emoji { font-size: 1.35rem; line-height: 1.1; }
+    .activity-label { font-size: 0.92rem; font-weight: 700; color: var(--sumi); line-height: 1.2; }
+    .activity-sub { font-size: 0.74rem; color: var(--sumi-light); line-height: 1.2; }
+
+    /* 移動＆バス検索バー */
+    .transfer-block {
+      margin-left: 14px;
+      padding-left: 14px;
+      border-left: 3px solid rgba(158, 113, 8, 0.55);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .transfer-pill {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background-color: var(--kinari-deep);
+      border: 1px solid var(--border-warm);
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--sumi);
+    }
+    .transfer-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn-bus-link {
+      min-height: 44px;
+      padding: 6px 12px;
+      border-radius: 12px;
+      background-color: var(--bus-bg);
+      border: 1.5px solid var(--bus-blue);
+      color: var(--bus-blue);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .btn-walk-link {
+      min-height: 44px;
+      padding: 6px 12px;
+      border-radius: 12px;
+      background-color: rgba(62, 94, 71, 0.1);
+      border: 1.5px solid var(--matcha);
+      color: var(--matcha);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    /* バッジ・情報 */
+    .badge-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .badge-cat-onsen { background-color: rgba(62, 94, 71, 0.15); color: #2D4A35; }
+    .badge-cat-wine { background-color: rgba(122, 35, 58, 0.14); color: #7A233A; }
+    .badge-cat-gourmet { background-color: #FEF3C7; color: #7A5504; }
+    .badge-cat-cafe { background-color: rgba(143, 90, 74, 0.15); color: #6E4133; }
+    .badge-cat-sightseeing { background-color: rgba(61, 88, 115, 0.15); color: #2C4257; }
+    .badge-cat-ashiyu { background-color: rgba(166, 115, 40, 0.15); color: #795119; }
+    .badge-bus { background-color: var(--bus-bg); color: var(--bus-blue); border: 1px solid rgba(29, 78, 137, 0.28); }
+    .badge-walk { background-color: rgba(62, 94, 71, 0.15); color: var(--matcha); }
+    .badge-ok { background-color: #DCFCE7; color: #166534; }
+    .badge-warn { background-color: #FFEDD5; color: #9A3412; }
+
+    .spot-name { font-family: var(--font-serif); font-size: 1.12rem; font-weight: 700; color: var(--sumi); line-height: 1.35; }
+    .spot-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.86rem; color: var(--sumi-light); margin-top: 6px; }
+    .spot-desc { font-size: 0.9rem; color: var(--sumi); line-height: 1.6; }
+    .note-box {
+      border-radius: 12px;
+      background-color: var(--kinari);
+      border: 1px solid var(--border-warm);
+      padding: 10px 12px;
+      font-size: 0.84rem;
+      color: var(--sumi);
+      line-height: 1.55;
+      margin-top: 8px;
+    }
+    .bus-box {
+      border-radius: 12px;
+      background-color: var(--bus-bg);
+      border: 1px solid rgba(29, 78, 137, 0.25);
+      padding: 10px 12px;
+      font-size: 0.84rem;
+      color: #163A63;
+      line-height: 1.55;
+      margin-top: 8px;
+    }
+    .warning-box {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background-color: #FFF7ED;
+      border: 2px solid #FDBA74;
+      color: #7C2D12;
+      font-size: 0.84rem;
+      font-weight: 700;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    /* コントロール行 */
+    .step-controls {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-warm);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .ctrl-group { display: flex; align-items: center; gap: 6px; }
+    .ctrl-btn {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0 10px;
+      border-radius: 12px;
+      background-color: var(--kinari);
+      border: 1px solid var(--border-warm);
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--sumi);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    .ctrl-btn.danger { background-color: #FEF2F2; border-color: #FECACA; color: #B91C1C; }
+    .ctrl-btn.change { background-color: var(--white); border: 1.5px solid var(--bordeaux); color: var(--bordeaux); padding: 0 12px; }
+    .dur-val { min-width: 48px; text-align: center; font-size: 0.88rem; font-weight: 700; }
+
+    /* 汎用ボタン */
+    .btn-primary-solid {
+      width: 100%;
+      min-height: 50px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background-color: var(--bordeaux);
+      color: var(--kinari);
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .btn-primary-outline {
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background-color: var(--white);
+      border: 2px solid var(--bordeaux);
+      color: var(--bordeaux);
+      font-size: 0.92rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .btn-secondary {
+      width: 100%;
+      min-height: 46px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      background-color: var(--kinari);
+      border: 1px solid var(--border-warm);
+      color: var(--sumi);
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .btn-stack { display: flex; flex-direction: column; gap: 10px; }
+
+    /* サマリーカード（しおりタブ） */
+    .summary-card {
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--bordeaux), var(--bordeaux-dark));
+      color: var(--kinari);
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(91, 24, 42, 0.24);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .summary-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .summary-sub { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--gold-light); font-weight: 700; }
+    .summary-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; }
+    .summary-route-pill { padding: 4px 12px; border-radius: 999px; background-color: rgba(255, 255, 255, 0.16); font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .summary-metric { background-color: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 12px; padding: 10px 12px; }
+    .metric-label { font-size: 0.78rem; opacity: 0.92; }
+    .metric-value { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; margin-top: 2px; }
+    .metric-value.gold { color: var(--gold-light); }
+    .metric-note { font-size: 0.72rem; opacity: 0.85; margin-top: 2px; }
+    .summary-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .btn-gold-solid { min-height: 48px; padding: 8px 12px; border-radius: 12px; background-color: var(--gold-light); color: var(--sumi); font-size: 0.88rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .btn-ghost-white { min-height: 48px; padding: 8px 12px; border-radius: 12px; background-color: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.32); color: var(--kinari); font-size: 0.88rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .btn-reset-dark { width: 100%; min-height: 44px; padding: 8px 12px; border-radius: 12px; background-color: rgba(0, 0, 0, 0.22); border: 1px solid rgba(255, 255, 255, 0.22); color: var(--kinari); font-size: 0.84rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+    /* 往路・復路カード */
+    .transit-card-rows { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; font-size: 0.92rem; }
+    .transit-row { display: flex; align-items: center; gap: 12px; }
+    .transit-time { font-family: var(--font-serif); font-weight: 700; width: 56px; flex-shrink: 0; }
+    .transit-time.bordeaux { color: var(--bordeaux); }
+    .transit-time.matcha { color: var(--matcha); }
+    .transit-mid { margin-left: 24px; padding-left: 14px; border-left: 2px dashed rgba(158, 113, 8, 0.65); font-size: 0.84rem; color: var(--sumi-light); padding-top: 2px; padding-bottom: 2px; }
+
+    /* 予算内訳 */
+    .budget-list { display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--sumi-light); }
+    .budget-row { display: flex; justify-content: space-between; gap: 10px; }
+    .budget-row.indent { padding-left: 10px; border-left: 2px solid var(--border-warm); }
+    .budget-row.total-couple { padding-top: 10px; margin-top: 4px; border-top: 1px solid var(--border-warm); font-size: 0.98rem; font-weight: 700; color: var(--sumi); }
+    .budget-row.total-person { font-size: 1.04rem; font-weight: 700; color: var(--bordeaux); }
+    .budget-val { font-weight: 700; color: var(--sumi); flex-shrink: 0; }
+    .budget-val.serif { font-family: var(--font-serif); }
+    .budget-row.total-person .budget-val { color: var(--bordeaux); }
+
+    /* バスガイド・現地メモ */
+    .bus-guide-hero { border-radius: 16px; background-color: var(--bus-blue); color: var(--white); padding: 16px; }
+    .bus-guide-card { background-color: var(--white); border-radius: 14px; border: 1px solid var(--border-warm); padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .bus-dest-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--bus-blue); }
+    .bus-detail-text { font-size: 0.88rem; color: var(--sumi); line-height: 1.6; }
+
+    .tip-item { background-color: var(--white); border-radius: 16px; border: 1px solid var(--border-warm); overflow: hidden; }
+    .tip-trigger { width: 100%; min-height: 60px; padding: 14px 16px; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .tip-tag { display: inline-block; padding: 2px 10px; border-radius: 6px; background-color: rgba(62, 94, 71, 0.14); color: var(--matcha); font-size: 0.76rem; font-weight: 700; margin-bottom: 6px; }
+    .tip-title { font-family: var(--font-serif); font-size: 0.96rem; font-weight: 700; color: var(--sumi); line-height: 1.4; }
+    .tip-chevron { width: 24px; height: 24px; color: var(--gold); flex-shrink: 0; transition: transform 0.2s ease; }
+    .tip-item[data-open="true"] .tip-chevron { transform: rotate(180deg); }
+    .tip-body { padding: 12px 16px 16px; border-top: 1px solid var(--border-warm); font-size: 0.9rem; color: var(--sumi); line-height: 1.65; }
+
+    /* ボトムシート */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background-color: rgba(34, 30, 27, 0.65);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .modal-overlay.center { align-items: center; padding: 16px; }
+    .modal-backdrop { position: absolute; inset: 0; }
+    .modal-sheet {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      max-height: 92vh;
+      max-height: 92dvh;
+      background-color: var(--kinari);
+      border-radius: 24px 24px 0 0;
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .modal-header {
+      padding: 12px 16px;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--border-warm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .modal-close-btn {
+      min-height: 44px; min-width: 44px;
+      border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--sumi); flex-shrink: 0;
+    }
+    .modal-scroll {
+      overflow-y: auto;
+      padding: 16px 16px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .chip-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-chip {
+      min-height: 40px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1.5px solid var(--border-warm);
+      background-color: var(--white);
+      color: var(--sumi);
+    }
+    .filter-chip.active { background-color: var(--matcha); border-color: var(--matcha); color: var(--kinari); }
+
+    .picker-card {
+      background-color: var(--white);
+      border-radius: 16px;
+      padding: 14px;
+      border: 2px solid var(--border-warm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .confirm-box {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      background-color: var(--white);
+      border-radius: 22px;
+      padding: 20px;
+      border: 1px solid var(--border-warm);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .confirm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .btn-danger-solid { min-height: 48px; border-radius: 12px; background-color: #B91C1C; color: var(--white); font-size: 0.92rem; font-weight: 700; }
+
+    /* トースト */
+    .toast-wrap {
+      position: fixed;
+      left: 50%;
+      bottom: 88px;
+      transform: translate(-50%, 10px);
+      z-index: 60;
+      width: 92%;
+      max-width: 440px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .toast-wrap.show { opacity: 1; transform: translate(-50%, 0); }
+    .toast-inner {
+      background-color: var(--sumi);
+      color: var(--kinari);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 12px 16px;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid rgba(243, 215, 139, 0.65);
+    }
+
+    /* ボトムナビ */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      z-index: 40;
+      background-color: rgba(255, 255, 255, 0.98);
+      border-top: 2px solid var(--border-warm);
+      box-shadow: 0 -4px 16px rgba(34, 30, 27, 0.09);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    .bottom-nav-grid { display: grid; grid-template-columns: repeat(3, 1fr); height: 70px; }
+    .nav-tab {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 4px; min-height: 48px; color: var(--sumi-light); font-weight: 500; font-size: 0.8rem;
+    }
+    .nav-tab.active { color: var(--bordeaux); font-weight: 700; }
+    .nav-icon-wrap { position: relative; display: inline-flex; }
+    .nav-badge {
+      position: absolute; top: -6px; right: -14px;
+      min-width: 22px; height: 22px; padding: 0 5px;
+      border-radius: 999px; background-color: var(--bordeaux); color: var(--kinari);
+      font-size: 0.74rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    }
+
+    @media print {
+      body, html, .app-shell { background: #FFFFFF !important; box-shadow: none !important; max-width: 100% !important; }
+      .app-header, .bottom-nav, #toast, #picker-modal, #detail-modal, #confirm-modal, .no-print { display: none !important; }
+      .app-main { padding: 0 !important; }
+      #panel-plan, #panel-bus { display: none !important; }
+      #panel-shiori { display: flex !important; }
+      .print-break-avoid { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="header-title-wrap">
+          <p class="header-sub">日帰り温泉プラン（帰り・新宿駅直通）</p>
+          <h1 class="header-title">石和温泉 旅のしおり</h1>
+        </div>
+        <div class="header-actions">
+          <button type="button" id="font-size-toggle" aria-pressed="false" class="header-btn">
+            <span class="header-btn-small">文字</span>
+            <span id="font-size-label" class="header-btn-val">標準</span>
+          </button>
+          <button type="button" id="header-shiori-jump" class="header-btn">
+            <span class="header-btn-small">新宿着目安</span>
+            <span id="header-return-time" class="header-btn-val serif">--:--</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+
+      <!-- ==================== タブ1：予定をつくる ==================== -->
+      <section id="panel-plan" class="tab-panel">
+
+        <!-- 石和温泉駅の到着時刻＆電車ルート -->
+        <div class="card">
+          <div class="section-head">
+            <div class="section-title-group">
+              <span class="section-bar"></span>
+              <h2 class="section-title">石和温泉駅の到着時刻とルート</h2>
+            </div>
+            <span id="plan-depart-pill" class="pill-accent">新宿発目安 --:--</span>
+          </div>
+          <p class="sub-desc" style="margin-bottom:8px;">
+            石和温泉駅の到着時刻を1分単位で自由に設定できます。帰りは<strong>新宿駅へ直通（特急・約1時間35分）</strong>で計算します。
+          </p>
+          <div class="dep-controls">
+            <button type="button" id="arr-minus-btn" class="dep-step-btn" aria-label="15分早める">−15分</button>
+            <input type="time" id="arrive-time-input" aria-label="石和温泉駅の到着時刻" class="time-input" value="11:08">
+            <button type="button" id="arr-plus-btn" class="dep-step-btn" aria-label="15分遅らせる">＋15分</button>
+          </div>
+          <div class="route-list" id="route-buttons" role="radiogroup">
+            <button type="button" data-route="shinjuku" class="route-opt">
+              <div>
+                <div class="route-name">新宿駅発着 特急「かいじ」直通</div>
+                <div class="route-meta">片道約1時間35分 ／ 1人往復 約8,000円</div>
+              </div>
+              <span class="route-check"></span>
+            </button>
+            <button type="button" data-route="tachikawa" class="route-opt">
+              <div>
+                <div class="route-name">行き：立川駅発 特急 ／ 帰り：新宿駅直通</div>
+                <div class="route-meta">行き約1時間15分・帰り約1時間35分 ／ 1人合計 約7,000円</div>
+              </div>
+              <span class="route-check"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- モデルコース -->
+        <div class="card">
+          <div class="section-head">
+            <div class="section-title-group">
+              <span class="section-bar gold"></span>
+              <h2 class="section-title">モデルコースから始める</h2>
+            </div>
+            <span class="pill-accent">一括セット</span>
+          </div>
+          <p class="sub-desc">定番コースを読み込んで、あとから1か所だけ入れ替えることもできます。</p>
+          <div class="preset-list">
+            <button type="button" data-preset="classic" class="preset-btn">
+              <div>
+                <div class="preset-title bordeaux">🍷 王道・徒歩でゆったり満喫（4か所）</div>
+                <div class="preset-route">1.小作 → 2.マルス → 3.糸柳 → 4.駅前あしゆ</div>
+              </div>
+              <span class="preset-arrow" style="color: var(--bordeaux);">選ぶ ›</span>
+            </button>
+            <button type="button" data-preset="cafeHistory" class="preset-btn">
+              <div>
+                <div class="preset-title matcha">♨ 源泉かけ流し＆歴史さんぽ（土日向け・4か所）</div>
+                <div class="preset-route">1.深雪温泉 → 2.小作 → 3.八田家書院 → 4.YATSUDOKI</div>
+              </div>
+              <span class="preset-arrow" style="color: var(--matcha);">選ぶ ›</span>
+            </button>
+            <button type="button" data-preset="hottarakashi" class="preset-btn">
+              <div>
+                <div class="preset-title gold">🗻 絶景・ほったらかし温泉満喫（4か所）</div>
+                <div class="preset-route">1.小作 → 2.フルーツ公園 → 3.ほったらかし温泉 → 4.月のうさぎ</div>
+              </div>
+              <span class="preset-arrow" style="color: var(--gold);">選ぶ ›</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 順番スロット一覧 -->
+        <div class="section-head" style="margin-bottom:0; padding:0 4px;">
+          <div class="section-title-group">
+            <span class="section-bar"></span>
+            <h2 class="section-title">順番に「やりたいこと」を選ぶ</h2>
+          </div>
+          <span style="font-size:0.8rem; color:var(--sumi-light);">目安 3〜4か所</span>
+        </div>
+
+        <div id="slot-container" class="slot-list"></div>
+
+      </section>
+
+      <!-- ==================== タブ2：しおり確認 ==================== -->
+      <section id="panel-shiori" class="tab-panel hidden">
+        <div class="summary-card print-break-avoid">
+          <div class="summary-top">
+            <div>
+              <p class="summary-sub">ITINERARY</p>
+              <h2 class="summary-title">石和温泉 日帰りしおり</h2>
+            </div>
+            <span id="summary-route-pill" class="summary-route-pill">新宿駅発着</span>
+          </div>
+
+          <div class="summary-grid">
+            <div class="summary-metric">
+              <div class="metric-label">石和温泉駅 着</div>
+              <div id="summary-arrive-isawa" class="metric-value">--:--</div>
+            </div>
+            <div class="summary-metric">
+              <div class="metric-label">新宿駅 到着予定</div>
+              <div id="summary-return-time" class="metric-value gold">--:--</div>
+              <div class="metric-note">特急直通・乗換なし</div>
+            </div>
+            <div class="summary-metric">
+              <div class="metric-label">1人あたり目安</div>
+              <div id="summary-budget-per-person" class="metric-value gold">¥0</div>
+              <div class="metric-note">※タクシー2名割勘</div>
+            </div>
+            <div class="summary-metric">
+              <div class="metric-label">2名 合計目安</div>
+              <div id="summary-budget-couple" class="metric-value">¥0</div>
+              <div id="summary-spot-count" class="metric-note">選択 0件</div>
+            </div>
+          </div>
+
+          <div class="summary-btn-grid no-print">
+            <button type="button" id="copy-shiori-btn" class="btn-gold-solid">📋 LINE用にコピー</button>
+            <button type="button" id="print-shiori-btn" class="btn-ghost-white">🖨 印刷・PDF保存</button>
+          </div>
+          <div class="no-print">
+            <button type="button" id="reset-shiori-btn" class="btn-reset-dark">予定をすべてクリア</button>
+          </div>
+        </div>
+
+        <div id="timeline-container" class="slot-list"></div>
+
+        <div class="card print-break-avoid">
+          <div class="section-head">
+            <div class="section-title-group">
+              <span class="section-bar gold"></span>
+              <h3 class="section-title">概算予算の内訳（2名 / 1人）</h3>
+            </div>
+          </div>
+          <div id="budget-breakdown-body" class="budget-list"></div>
+        </div>
+      </section>
+
+      <!-- ==================== タブ3：バス・現地メモ ==================== -->
+      <section id="panel-bus" class="tab-panel hidden">
+        <div class="bus-guide-hero">
+          <p style="font-size:0.74rem; font-weight:700; color:var(--gold-light); margin-bottom:4px;">BUS &amp; LOCAL GUIDE</p>
+          <h2 style="font-family:var(--font-serif); font-size:1.15rem; font-weight:700;">石和温泉駅 バス乗り場＆方面ガイド</h2>
+          <p style="font-size:0.86rem; opacity:0.95; margin-top:6px;">
+            方面ごとの路線バス・無料送迎バスの目安と、リアルタイムの乗換検索リンクです。
+          </p>
+          <div style="margin-top:12px;">
+            <a href="https://www.google.com/maps/search/?api=1&query=%E7%9F%B3%E5%92%8C%E6%B8%A9%E6%B3%89%E9%A7%85+%E3%83%90%E3%82%B9%E4%B9%97%E3%82%8A%E5%A0%B4" target="_blank" rel="noopener noreferrer" class="btn-gold-solid" style="text-decoration:none;">
+              📍 石和温泉駅のバス乗り場を地図で見る ↗
+            </a>
+          </div>
+        </div>
+
+        <div id="bus-guide-container" class="slot-list"></div>
+
+        <div class="section-head" style="margin-top:8px; margin-bottom:0; padding:0 4px;">
+          <div class="section-title-group">
+            <span class="section-bar"></span>
+            <h2 class="section-title">現地で役立つ実用メモ（7件）</h2>
+          </div>
+          <button type="button" id="toggle-all-tips-btn" class="ctrl-btn" style="background:#fff; min-height:40px;">すべて開く</button>
+        </div>
+
+        <div id="tips-container" class="slot-list"></div>
+      </section>
+
+    </main>
+
+    <!-- ==================== 場所選択ボトムシート ==================== -->
+    <div id="picker-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="picker-title">
+      <div id="picker-backdrop" class="modal-backdrop"></div>
+      <div class="modal-sheet">
+        <div id="picker-accent-bar" class="slot-bar bar-gourmet"></div>
+        <div class="modal-header">
+          <div>
+            <div id="picker-sub" style="font-size:0.78rem; font-weight:700; color:var(--bordeaux);">1番目（到着目安 --:--）</div>
+            <h2 id="picker-title" class="section-title" style="font-size:1.08rem;">場所を選ぶ</h2>
+          </div>
+          <button type="button" id="picker-close-btn" class="modal-close-btn" aria-label="閉じる">
+            <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-scroll">
+          <div>
+            <div style="font-size:0.82rem; font-weight:700; margin-bottom:6px;">条件で絞り込む</div>
+            <div id="picker-filters" class="chip-wrap"></div>
+          </div>
+          <div id="picker-list" class="slot-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== スポット詳細モーダル ==================== -->
+    <div id="detail-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-spot-title">
+      <div id="detail-backdrop" class="modal-backdrop"></div>
+      <div class="modal-sheet">
+        <div id="detail-accent-bar" class="slot-bar bar-onsen"></div>
+        <div class="modal-header">
+          <div class="badge-row">
+            <span id="detail-cat-badge" class="badge">カテゴリ</span>
+            <span id="detail-rating-badge" class="badge" style="background:#FEF3C7; color:#78350F;">★4.0</span>
+          </div>
+          <button type="button" id="detail-close-btn" class="modal-close-btn" aria-label="閉じる">
+            <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div id="detail-body" class="modal-scroll"></div>
+      </div>
+    </div>
+
+    <!-- ==================== リセット確認モーダル ==================== -->
+    <div id="confirm-modal" class="modal-overlay center hidden" role="alertdialog" aria-modal="true">
+      <div class="confirm-box">
+        <h3 class="section-title" style="font-size:1.12rem;">予定をすべてクリアしますか？</h3>
+        <p style="font-size:0.9rem; color:var(--sumi-light);">現在選んでいる順番とスポットがすべて消去されます。</p>
+        <div class="confirm-actions">
+          <button type="button" id="confirm-cancel-btn" class="btn-secondary">やめる</button>
+          <button type="button" id="confirm-ok-btn" class="btn-danger-solid">クリアする</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- トースト -->
+    <div id="toast" role="status" aria-live="polite" class="toast-wrap">
+      <div id="toast-inner" class="toast-inner">通知</div>
+    </div>
+
+    <!-- ボトムナビ -->
+    <nav aria-label="メインナビゲーション" class="bottom-nav">
+      <div class="bottom-nav-grid">
+        <button type="button" data-tab="plan" class="nav-tab active">
+          <div class="nav-icon-wrap">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.1" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+            <span id="nav-count-badge" class="nav-badge">0</span>
+          </div>
+          <span>1. 予定をつくる</span>
+        </button>
+
+        <button type="button" data-tab="shiori" class="nav-tab">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.1" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span>2. しおり確認</span>
+        </button>
+
+        <button type="button" data-tab="bus" class="nav-tab">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.1" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span>3. バス・現地メモ</span>
+        </button>
+      </div>
+    </nav>
+
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'isawa_slot_shiori_v9_public_safe';
+      const MAX_SLOTS = 6;
+      const STATION_QUERY = '石和温泉駅';
+      const DEFAULT_ARRIVE_TIME = '11:08';
+
+      // JR中央線 特急直通ルート（行き：新宿発または立川発 ／ 帰り：新宿駅直通）
+      const ROUTES = {
+        shinjuku: {
+          id: 'shinjuku',
+          shortName: '新宿駅発着',
+          name: '新宿駅発着 特急「かいじ」直通',
+          depStation: '新宿駅',
+          depPillPrefix: '新宿発目安',
+          outboundMin: 95,
+          returnMin: 95,
+          outboundFare: 4000,
+          returnFare: 4000,
+          roundTripFare: 8000,
+          outboundNote: '特急「かいじ」直通（乗り換えなし・所要約1時間35分）'
+        },
+        tachikawa: {
+          id: 'tachikawa',
+          shortName: '立川発→新宿着',
+          name: '行き：立川駅発 特急 ／ 帰り：新宿駅直通',
+          depStation: '立川駅',
+          depPillPrefix: '立川発目安',
+          outboundMin: 75,
+          returnMin: 95,
+          outboundFare: 3000,
+          returnFare: 4000,
+          roundTripFare: 7000,
+          outboundNote: '特急「かいじ」直通（乗り換えなし・所要約1時間15分）'
+        }
+      };
+
+      const ACTIVITIES = [
+        { id: 'gourmet', label: 'ご飯を食べる', sub: 'ほうとう・蕎麦・和食', emoji: '🍲', bar: 'bar-gourmet', badge: 'badge-cat-gourmet' },
+        { id: 'onsen', label: '温泉に入る', sub: '旅館日帰り・絶景湯', emoji: '♨️', bar: 'bar-onsen', badge: 'badge-cat-onsen' },
+        { id: 'wine', label: 'ワインを味わう', sub: 'ワイナリー見学・試飲', emoji: '🍷', bar: 'bar-wine', badge: 'badge-cat-wine' },
+        { id: 'cafe', label: 'カフェで休む', sub: 'フルーツ・甘味・珈琲', emoji: '☕', bar: 'bar-cafe', badge: 'badge-cat-cafe' },
+        { id: 'sightseeing', label: '観光・お土産', sub: '庭園・神社・博物館', emoji: '🏯', bar: 'bar-sightseeing', badge: 'badge-cat-sightseeing' },
+        { id: 'ashiyu', label: '足湯・駅ナカ', sub: '駅前あしゆ・ワイン試飲', emoji: '🦶', bar: 'bar-ashiyu', badge: 'badge-cat-ashiyu' }
+      ];
+
+      const PICKER_CONDITIONS = [
+        { id: 'near5', label: '🚶 駅徒歩5分以内' },
+        { id: 'walkAll', label: '👟 駅徒歩圏内' },
+        { id: 'indoor', label: '☔ 雨でも安心' },
+        { id: 'relax', label: '🪑 ゆっくり座れる' },
+        { id: 'gensen', label: '♨ 源泉かけ流し' }
+      ];
+
+      function getActivityMeta(catId) {
+        return ACTIVITIES.find((a) => a.id === catId) || ACTIVITIES[0];
+      }
+
+      // 全33スポット
+      const SPOTS = [
+        // ===== 温泉（8件） =====
+        {
+          id: 'itoyanagi', name: '石和名湯館 糸柳', category: 'onsen', rating: 4.3,
+          accessType: 'walk', accessText: '駅徒歩3分', accessMin: 3, area: 'station',
+          busBadge: '🚶 バス不要（駅徒歩3分）',
+          busDetail: '石和温泉駅南口から平坦な道を歩いて3分ほどで到着します。',
+          destQuery: '石和名湯館 糸柳',
+          budget: 1500, priceText: '目安 1,500円', duration: 90,
+          hoursText: '11:00-21:00 ※混雑時制限あり', openMin: 11 * 60, closeMin: 21 * 60,
+          tags: ['near5', 'walkAll', 'indoor', 'relax'],
+          note: '15時以降は宿泊者混雑で制限がかかる場合があるため、昼間の入浴が安心です。',
+          specialChecks: [
+            { start: 12 * 60, end: 13 * 60, message: '12:00〜13:00頃は清掃時間と重なる場合があるため事前確認が安心です' },
+            { start: 15 * 60, end: 18 * 60, message: '15:00〜18:00は宿泊者混雑により日帰り制限がかかる場合があります' }
+          ],
+          desc: '駅徒歩3分の老舗旅館。自家源泉のアルカリ性単純温泉と15種の薬石浴「嵐の湯」が人気。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJQYTDtfn7G2ARmMuUfIxMlrg',
+          url: 'https://www.itoyanagi.co.jp/'
+        },
+        {
+          id: 'miyuki', name: '旅館 深雪温泉', category: 'onsen', rating: 4.3,
+          accessType: 'walk', accessText: '徒歩15分 / タクシー5分', accessMin: 15, area: 'town',
+          busBadge: '🚌 山梨交通バス「石和温泉駅入口」方面 / 徒歩15分',
+          busDetail: '駅から徒歩15分。荷物がある日や雨天時は駅南口からタクシー約5分、または石和温泉街方面の路線バスも利用できます。',
+          destQuery: '旅館 深雪温泉 山梨県笛吹市',
+          budget: 1200, priceText: '目安 1,200円', duration: 75,
+          hoursText: '10:30-14:00（最終受付13:30）', openMin: 10 * 60 + 30, closeMin: 14 * 60, lastEntryMin: 13 * 60 + 30,
+          tags: ['walkAll', 'indoor', 'gensen'],
+          note: '日帰り受付が13:30までと早いため、1番目（午前中）に訪れるのがおすすめです。',
+          desc: '加温加水循環なし100%源泉かけ流し。シャワーやカランまで温泉水を使う泉質自慢の宿。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJj60isfD7G2ARv6secEYFsME',
+          url: 'https://www.kanjukunoyu.com/miyuki/'
+        },
+        {
+          id: 'keizan', name: '華やぎの章 慶山', category: 'onsen', rating: 4.0,
+          accessType: 'walk', accessText: '駅徒歩5分', accessMin: 5, area: 'near',
+          busBadge: '🚶 バス不要（駅徒歩5分）',
+          busDetail: '石和温泉駅南口からまっすぐ徒歩5分ほどです。',
+          destQuery: '華やぎの章 慶山',
+          budget: 1500, priceText: '目安 1,500円', duration: 90,
+          hoursText: '11:00-15:00 ※要事前確認', openMin: 11 * 60, closeMin: 15 * 60,
+          tags: ['near5', 'walkAll', 'indoor', 'gensen'],
+          note: '日帰り入浴の実施状況は当日電話で確認しておくと安心です。',
+          desc: '石和温泉を代表する老舗大型旅館。自家源泉かけ流しの開放的な大露天風呂と内湯が魅力。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJXw-aZPf7G2ARy0U6iAwttfg',
+          url: 'https://keizan.com/'
+        },
+        {
+          id: 'ishibue', name: '石笛の湯', category: 'onsen', rating: 4.5,
+          accessType: 'taxi', accessText: 'タクシー8分 / バス', accessMin: 8, taxiFareFromStation: 1200, area: 'suburb',
+          busBadge: '🚌 路線バス（本数少なめ）／タクシー約8分',
+          busDetail: '路線バスは本数が限られるため、時間に合わせて石和温泉駅からタクシー（約8分）を使うとスムーズです。',
+          destQuery: '石笛の湯 笛吹市',
+          budget: 900, priceText: '目安 900円', duration: 90,
+          hoursText: '10:00-23:00', openMin: 10 * 60, closeMin: 23 * 60,
+          tags: ['indoor', 'gensen', 'relax'],
+          note: '夜まで通し営業のため、どの順番にも組み込みやすい日帰り湯です。',
+          desc: '地元客にも愛される高評価の日帰り温泉施設。源泉かけ流しの内湯・露天風呂・寝湯・サウナ完備。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJy4JiTQD9G2ARDMwsJg1b6WI',
+          url: ''
+        },
+        {
+          id: 'naito', name: 'スパランド ホテル内藤', category: 'onsen', rating: 4.1,
+          accessType: 'shuttle', accessText: '無料送迎バス 約8分', accessMin: 8, taxiFareFromStation: 0, area: 'suburb',
+          busBadge: '🚌 駅南口から無料送迎バスあり（約8分）',
+          busDetail: '石和温泉駅南口ロータリーからホテルの無料送迎バスが定期運行しています（時刻は公式サイト等で要確認）。',
+          destQuery: 'スパランド ホテル内藤',
+          budget: 2200, priceText: '目安 2,200円', duration: 120,
+          hoursText: '5:00-25:00', openMin: 5 * 60, closeMin: 25 * 60,
+          tags: ['indoor', 'relax'],
+          note: 'タオル・館内着無料で手ぶらOK。雨の日にもゆっくり過ごせます。',
+          desc: 'タオル・館内着無料で手ぶらOK。露天風呂・本格サウナ・岩盤浴・休憩処が揃う大型スパ。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ_aTpRez7G2ARrn4CCP4k1Yc',
+          url: 'http://www.hotel-naito.com/spaland/'
+        },
+        {
+          id: 'kenkoland', name: 'クア・アンド・ホテル 石和健康ランド', category: 'onsen', rating: 4.0,
+          accessType: 'shuttle', accessText: '無料送迎バス 約10分', accessMin: 10, taxiFareFromStation: 0, area: 'suburb',
+          busBadge: '🚌 駅南口から無料送迎バスあり（約10分）',
+          busDetail: '石和温泉駅南口から無料送迎バスが運行しています。出発時刻は公式サイトで確認できます。',
+          destQuery: '石和健康ランド',
+          budget: 1980, priceText: '目安 1,980円', duration: 120,
+          hoursText: '24時間営業', openMin: 0, closeMin: 24 * 60,
+          tags: ['indoor', 'relax'],
+          note: '無料送迎バスあり。多彩な湯船と休憩室が揃う大型施設です。',
+          desc: 'オートロウリュサウナ・塩サウナ・多彩な湯船と休憩室を備える定番温浴施設。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJCdop2F75G2AROWF3TjksyvM',
+          url: 'http://www.kur-hotel.co.jp/isawa/'
+        },
+        {
+          id: 'hottarakashi', name: 'ほったらかし温泉', category: 'onsen', rating: 4.4,
+          accessType: 'taxi', accessText: 'タクシー約25分', accessMin: 25, taxiFareFromStation: 3400, area: 'fruitpark',
+          busBadge: '🚕 路線バスなし（山梨市駅からタクシー約10分 / 石和から約25分）',
+          busDetail: '直通路線バスはありません。石和温泉駅からタクシー約25分、またはJR中央線で1駅隣の「山梨市駅」へ出てタクシー約10分（約2,000円）が定番です。帰りは迎車予約が必要です。',
+          destQuery: 'ほったらかし温泉',
+          budget: 900, priceText: '目安 900円', duration: 90,
+          hoursText: '5:00-21:30', openMin: 5 * 60, closeMin: 21 * 60 + 30,
+          tags: [],
+          note: '高台にあり流しのタクシーがいないため、帰りのタクシー迎車予約を忘れずに。休日は混雑します。',
+          desc: '甲府盆地と富士山を一望する全国屈指の絶景露天風呂。「あっちの湯」「こっちの湯」があり名物温玉揚げも人気。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJp0qcByf_G2ARjQfstvBXJ8Y',
+          url: 'http://www.hottarakashi-onsen.com/'
+        },
+        {
+          id: 'pukupuku', name: 'やまなしフルーツ温泉 ぷくぷく', category: 'onsen', rating: 4.1,
+          accessType: 'taxi', accessText: 'タクシー約20分 / 山梨市駅バス', accessMin: 20, taxiFareFromStation: 2900, area: 'fruitpark',
+          busBadge: '🚌 JR山梨市駅から市営バス「フルーツ公園」下車 / 石和からタクシー20分',
+          busDetail: 'JR中央線で1駅隣の「山梨市駅」から山梨市営バス（フルーツ公園線）で約7分、または石和温泉駅からタクシー約20分です。',
+          destQuery: 'やまなしフルーツ温泉 ぷくぷく',
+          budget: 900, priceText: '目安 900円', duration: 90,
+          hoursText: '10:00-23:00（平日11:00-）', openMin: 10 * 60, closeMin: 23 * 60,
+          tags: ['relax'],
+          note: 'フルーツ公園内の高台にあります。帰りのタクシーは受付で呼ぶこともできます。',
+          desc: '笛吹川フルーツ公園内にある絶景展望風呂。季節のフルーツ風呂や夜景を望む露天風呂が評判。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ7QEkM-H-G2ARIGDCsspJ6wE',
+          url: 'https://www.puku-puku.com/'
+        },
+
+        // ===== ワイン（4件） =====
+        {
+          id: 'mars', name: 'マルス山梨ワイナリー 本坊酒造', category: 'wine', rating: 4.1,
+          accessType: 'walk', accessText: '駅徒歩12分', accessMin: 12, area: 'town',
+          busBadge: '🚶 駅徒歩12分（平坦な道）',
+          busDetail: '石和温泉駅南口から徒歩12分ほど。雨天時はタクシー約5分です。',
+          destQuery: 'マルス山梨ワイナリー',
+          budget: 500, priceText: '目安 500円', duration: 60,
+          hoursText: '9:00-16:30', openMin: 9 * 60, closeMin: 16 * 60 + 30,
+          tags: ['walkAll', 'indoor'],
+          note: '屋内見学なので雨天でも安心。濃厚なぶどうジュースの試飲も好評です。',
+          desc: '地下樽貯蔵庫や瓶詰めラインを無料見学でき、売店では6種前後のワインやぶどうジュースを試飲可能。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ05lEmgb8G2ARg1-dotVHpc4',
+          url: 'https://www.hombo.co.jp/visiting/yamanashi/'
+        },
+        {
+          id: 'monde', name: 'モンデ酒造', category: 'wine', rating: 3.9,
+          accessType: 'walk', accessText: '駅徒歩12分', accessMin: 12, area: 'town',
+          busBadge: '🚶 駅徒歩12分（平坦な道）',
+          busDetail: '石和温泉駅南口から徒歩12分ほど。国道沿いでわかりやすいルートです。',
+          destQuery: 'モンデ酒造',
+          budget: 500, priceText: '目安 500円', duration: 60,
+          hoursText: '9:00-16:30', openMin: 9 * 60, closeMin: 16 * 60 + 30,
+          tags: ['walkAll', 'indoor'],
+          note: '試飲コーナーと地元土産の品揃えが充実しています。',
+          desc: '缶ワインの先駆けとして知られる老舗ワイナリー。無料・有料の試飲コーナーや地元土産が充実。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJe7gGwPf7G2ARMWwBAcc-Ih4',
+          url: 'https://www.mondewinery.co.jp/'
+        },
+        {
+          id: 'winerakuen', name: '飲んで探す ワインの楽園', category: 'wine', rating: 4.8,
+          accessType: 'walk', accessText: '駅徒歩10分', accessMin: 10, area: 'town',
+          busBadge: '🚶 駅徒歩10分',
+          busDetail: '石和温泉駅から徒歩10分ほど。試飲メインなので電車旅にぴったりです。',
+          destQuery: '飲んで探す ワインの楽園 笛吹市',
+          budget: 1000, priceText: '目安 1,000円', duration: 45,
+          hoursText: '9:00-17:00', openMin: 9 * 60, closeMin: 17 * 60,
+          tags: ['walkAll', 'indoor'],
+          note: '好みに合わせた丁寧な提案が好評で、初心者でも気軽に飲み比べできます。',
+          desc: '100〜200円で10種以上の山梨ワインをセルフ試飲。好みに合わせた提案が初心者にも大人気。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ2xwOPgD7G2ARVb_CWWJU16Q',
+          url: 'https://winenorakuen.com/'
+        },
+        {
+          id: 'lumiere', name: 'ルミエールワイナリー', category: 'wine', rating: 4.2,
+          accessType: 'taxi', accessText: 'タクシー15分 / 路線バス', accessMin: 15, taxiFareFromStation: 2200, area: 'ichinomiya',
+          busBadge: '🚌 富士急バス「一宮」方面 / タクシー約15分',
+          busDetail: '石和温泉駅から富士急バス（一宮・勝沼方面）またはタクシー約15分です。バス本数が少ないため時刻確認が必須です。',
+          destQuery: 'ルミエールワイナリー',
+          budget: 1000, priceText: '目安 1,000円', duration: 75,
+          hoursText: '9:30-17:30', openMin: 9 * 60 + 30, closeMin: 17 * 60 + 30,
+          tags: ['indoor', 'relax'],
+          note: '落ち着いた大人の雰囲気で、石蔵発酵槽の見学と本格テイスティングが楽しめます。',
+          desc: '1885年創業の名門。国の登録有形文化財「石蔵発酵槽」見学や100円〜の本格テイスティングが楽しめる。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJM5-qqHn9G2ARne6HLpMRFw8',
+          url: 'https://www.lumiere.jp/'
+        },
+
+        // ===== グルメ（7件） =====
+        {
+          id: 'kosaku', name: '甲州ほうとう小作 石和駅前通り店', category: 'gourmet', rating: 4.1,
+          accessType: 'walk', accessText: '駅徒歩8分', accessMin: 8, area: 'near',
+          busBadge: '🚶 バス不要（駅徒歩8分）',
+          busDetail: '石和温泉駅南口から駅前通りをまっすぐ徒歩8分ほどです。',
+          destQuery: '甲州ほうとう小作 石和駅前通り店',
+          budget: 1600, priceText: '目安 1,600円', duration: 60,
+          hoursText: '11:00-20:30（土日21:00）', openMin: 11 * 60, closeMin: 20 * 60 + 30,
+          tags: ['walkAll', 'indoor', 'relax'],
+          note: '休日の12時台は行列になることがあります。11時の開店直後か14時以降が狙い目です。',
+          desc: '山梨名物ほうとうの王道人気店。具だくさんのかぼちゃほうとうや馬刺し・鳥もつ煮も味わえる。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJS1gkL_T7G2ARDD1dONL3JEg',
+          url: 'http://www.kosaku.co.jp/tenpo-isawa.html'
+        },
+        {
+          id: 'okutou', name: '川田奥藤第二分店', category: 'gourmet', rating: 4.1,
+          accessType: 'taxi', accessText: 'タクシー10分 / 路線バス', accessMin: 10, taxiFareFromStation: 1500, area: 'suburb',
+          busBadge: '🚌 山梨交通バス「川田」方面 / タクシー約10分',
+          busDetail: '石和温泉駅から甲府駅方面の山梨交通バスに乗車し「川田」付近下車、またはタクシー約10分です。',
+          destQuery: '川田奥藤第二分店',
+          budget: 1500, priceText: '目安 1,500円', duration: 60,
+          hoursText: '11:00-14:00, 17:30-20:00（水休）', openMin: 11 * 60, closeMin: 20 * 60,
+          tags: ['indoor', 'relax'],
+          note: '昼営業は14:00まで（水曜定休）。手打ちそばと鳥もつ煮のセットが人気です。',
+          splitWindows: [{ start: 11 * 60, end: 14 * 60 }, { start: 17 * 60 + 30, end: 20 * 60 }],
+          desc: '甲府鳥もつ煮発祥の系譜を継ぐ人気蕎麦処。照り焼き風の甘辛い鳥もつ煮と手打ちそばのセットが絶品。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJM4lP5uT7G2ARjUhwi6VbVdU',
+          url: 'http://kawada.okutou.com/'
+        },
+        {
+          id: 'akafuji', name: 'お食事処 赤富士', category: 'gourmet', rating: 3.7,
+          accessType: 'taxi', accessText: 'タクシー8分 / 路線バス', accessMin: 8, taxiFareFromStation: 1200, area: 'suburb',
+          busBadge: '🚌 路線バス「石和温泉」方面 / タクシー約8分',
+          busDetail: '石和温泉駅からタクシー約8分。通し営業で時間を気にせず立ち寄れます。',
+          destQuery: 'お食事処 赤富士 笛吹市',
+          budget: 1500, priceText: '目安 1,500円', duration: 60,
+          hoursText: '11:00-18:30（月15:30迄・火休）', openMin: 11 * 60, closeMin: 18 * 60 + 30,
+          tags: ['indoor', 'relax'],
+          note: '中休みがないため、14時〜15時頃の遅めランチにも使いやすいお店です。',
+          desc: '和風座敷でゆったり味わうほうとう・定食の名店。通し営業でランチタイムを逃しても立ち寄りやすい。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJlYz0dg78G2ARtrW4dCNqOpo',
+          url: 'http://akafuji0339.com/'
+        },
+        {
+          id: 'kadoya', name: 'かどや食堂', category: 'gourmet', rating: 4.3,
+          accessType: 'walk', accessText: '駅徒歩12分', accessMin: 12, area: 'town',
+          busBadge: '🚶 駅徒歩12分',
+          busDetail: '石和温泉駅南口から徒歩12分ほどです。',
+          destQuery: 'かどや食堂 笛吹市石和町',
+          budget: 1200, priceText: '目安 1,200円', duration: 60,
+          hoursText: '11:00-20:00（木14:00迄・金休）', openMin: 11 * 60, closeMin: 20 * 60,
+          tags: ['walkAll', 'indoor'],
+          note: '通し営業の日が多く、早めの夕食にも便利です。',
+          desc: '地元で長年愛される高評価の定食屋。通し営業の日が多く、早めの夕食にも使いやすい。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJm9vHxAv8G2AR_pDn0pMKF7M',
+          url: 'https://japoncompany.business/fuefuki/543786-'
+        },
+        {
+          id: 'ippukuya', name: 'いっぷく屋', category: 'gourmet', rating: 4.3,
+          accessType: 'walk', accessText: '駅徒歩12分', accessMin: 12, area: 'town',
+          busBadge: '🚶 駅徒歩12分',
+          busDetail: '石和温泉駅南口から徒歩12分ほどです。',
+          destQuery: 'いっぷく屋 笛吹市石和町',
+          budget: 1500, priceText: '目安 1,500円', duration: 60,
+          hoursText: '11:00-14:00, 17:00-21:00（月休）', openMin: 11 * 60, closeMin: 21 * 60,
+          tags: ['walkAll', 'indoor'],
+          note: '昼営業は14:00まで（月曜定休）。家庭料理が評判です。',
+          splitWindows: [{ start: 11 * 60, end: 14 * 60 }, { start: 17 * 60, end: 21 * 60 }],
+          desc: '温かい接客とコスパ抜群の家庭料理が評判。手作り餃子や柔らかいもつ煮定食が人気。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJK8wEegf8G2ARft2vceH7unA',
+          url: ''
+        },
+        {
+          id: 'tsukinousagi', name: '食彩酒房 月のうさぎ', category: 'gourmet', rating: 3.9,
+          accessType: 'walk', accessText: '駅徒歩3分', accessMin: 3, area: 'station',
+          busBadge: '🚶 バス不要（駅徒歩3分）',
+          busDetail: '石和温泉駅南口からすぐ。帰りの特急ギリギリまでゆっくりできます。',
+          destQuery: '食彩酒房 月のうさぎ 石和温泉',
+          budget: 2500, priceText: '目安 2,500円', duration: 75,
+          hoursText: '17:00-23:00（土日昼営業有・月火休）', openMin: 17 * 60, closeMin: 23 * 60,
+          tags: ['near5', 'walkAll', 'indoor', 'relax'],
+          note: '夕方〜夜の締めくくり（最後の順番）にぴったりの駅前居酒屋です。',
+          desc: '駅徒歩3分で帰りの特急ギリギリまでくつろげる居酒屋。馬刺し・鳥もつ煮・海鮮丼まで幅広い。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJj5kD6Pj7G2ARSv4VvA29fQU',
+          url: 'https://hitosara.com/0005004463/'
+        },
+        {
+          id: 'hangyodon', name: '酒場 はん魚どん', category: 'gourmet', rating: 4.7,
+          accessType: 'walk', accessText: '駅徒歩12分', accessMin: 12, area: 'town',
+          busBadge: '🚶 駅徒歩12分',
+          busDetail: '石和温泉駅から徒歩12分ほど。帰りは駅までタクシー（約5分）も便利です。',
+          destQuery: '酒場 はん魚どん 笛吹市',
+          budget: 3500, priceText: '目安 3,500円', duration: 75,
+          hoursText: '18:00-24:00（土日17:00-・水休）', openMin: 17 * 60, closeMin: 24 * 60,
+          tags: ['walkAll', 'indoor'],
+          note: '夕方〜夜営業の人気店のため事前予約がおすすめです。',
+          desc: '口コミ★4.7の鮮魚＆炉端焼き居酒屋。新鮮な刺身盛り合わせや季節の釜飯が好評。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ-w3y5ir7G2ARUH1CfBb9KHM',
+          url: 'https://tabelog.com/yamanashi/A1901/A190103/19014197/'
+        },
+
+        // ===== カフェ（3件） =====
+        {
+          id: 'lapaix', name: 'CAFE LA PAIX 石和温泉店', category: 'cafe', rating: 4.2,
+          accessType: 'taxi', accessText: 'タクシー8分 / バス', accessMin: 8, taxiFareFromStation: 1200, area: 'suburb',
+          busBadge: '🚌 路線バス「石和温泉」方面 / タクシー約8分',
+          busDetail: '石和温泉駅からタクシー約8分、または石和温泉街方面のバス停から徒歩圏内です。',
+          destQuery: 'CAFE LA PAIX 石和温泉店',
+          budget: 1200, priceText: '目安 1,200円', duration: 60,
+          hoursText: '10:00-18:00', openMin: 10 * 60, closeMin: 18 * 60,
+          tags: ['indoor', 'relax'],
+          note: '座ってゆったり季節のフルーツパフェを味わえます。',
+          desc: '山梨県産フルーツを贅沢に使ったパフェやクレープ・スイーツが人気のスタイリッシュなカフェ。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ5_XC-6X7G2ARA3mhXL3sPVY',
+          url: 'https://cafe-lapaix.com/'
+        },
+        {
+          id: 'yatsudoki', name: 'YATSUDOKI TERRACE 石和', category: 'cafe', rating: 4.1,
+          accessType: 'walk', accessText: '駅徒歩15分', accessMin: 15, area: 'town',
+          busBadge: '🚌 路線バス「石和温泉駅入口」方面 / 徒歩15分',
+          busDetail: '石和温泉駅から徒歩15分。温泉街散策のひと休みに立ち寄りやすい立地です。',
+          destQuery: 'YATSUDOKI TERRACE 石和',
+          budget: 1000, priceText: '目安 1,000円', duration: 45,
+          hoursText: '9:00-20:00', openMin: 9 * 60, closeMin: 20 * 60,
+          tags: ['walkAll', 'indoor', 'relax'],
+          note: '焼きたてアップルパイや樽出し生ワインなどお土産購入にも便利です。',
+          desc: 'シャトレーゼのプレミアムブランド。焼きたてアップルパイや搾りたて牛乳ソフト、樽出し生ワインも販売。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJG2GVIbr9G2ARNfW9qXwnyGo',
+          url: 'https://www.yatsudoki.jp/'
+        },
+        {
+          id: 'hanging', name: 'HanGing', category: 'cafe', rating: 3.9,
+          accessType: 'taxi', accessText: 'タクシー10分', accessMin: 10, taxiFareFromStation: 1500, area: 'suburb',
+          busBadge: '🚕 バス停から距離あり（タクシー約10分推奨）',
+          busDetail: '石和温泉駅からタクシー約10分がスムーズです。',
+          destQuery: 'HanGing 笛吹市石和町 カフェ',
+          budget: 1200, priceText: '目安 1,200円', duration: 60,
+          hoursText: '10:00-16:00', openMin: 10 * 60, closeMin: 16 * 60,
+          tags: ['indoor', 'relax'],
+          note: '16:00閉店のため、食後のティータイム（14時頃まで）の配置が安心です。',
+          desc: '開放感のあるおしゃれ空間でドリンクやスイーツを楽しめる石和の隠れ家カフェ。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJA13wjtv7G2AR6OcFA-scK2I',
+          url: 'https://www.instagram.com/hanging2021cafe/'
+        },
+
+        // ===== 観光・土産（7件） =====
+        {
+          id: 'kikyouya', name: '桔梗信玄餅 工場テーマパーク', category: 'sightseeing', rating: 3.7,
+          accessType: 'taxi', accessText: 'タクシー12分 / 路線バス', accessMin: 12, taxiFareFromStation: 1800, area: 'ichinomiya',
+          busBadge: '🚌 富士急バス「桔梗屋」方面 / タクシー約12分',
+          busDetail: '石和温泉駅から富士急バス（一宮・勝沼方面）利用、またはタクシー約12分です。',
+          destQuery: '桔梗信玄餅工場テーマパーク',
+          budget: 1000, priceText: '目安 1,000円', duration: 75,
+          hoursText: '9:00-16:00 ※11:40-12:20包装昼休憩', openMin: 9 * 60, closeMin: 16 * 60,
+          tags: ['indoor'],
+          note: '11:40〜12:20は工場ライン昼休憩です。お土産選びに人気です。',
+          specialChecks: [
+            { start: 11 * 60 + 40, end: 12 * 60 + 20, message: '11:40〜12:20は包装ラインの昼休憩です。アウトレットや信玄ソフトを先に楽しみましょう' }
+          ],
+          desc: '熟練スタッフの手包装を無料見学。アウトレット販売や名物「桔梗信玄ソフト」が外せない。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJoVPfYUP8G2ARL16xeEHgWs8',
+          url: 'http://themepark.kikyouya.co.jp/info/#info_01'
+        },
+        {
+          id: 'fruitpark', name: '山梨県笛吹川フルーツ公園', category: 'sightseeing', rating: 4.2,
+          accessType: 'taxi', accessText: 'タクシー20分 / 山梨市駅バス', accessMin: 20, taxiFareFromStation: 2900, area: 'fruitpark',
+          busBadge: '🚌 JR山梨市駅から市営バス「フルーツ公園」下車（約7分）',
+          busDetail: 'JR中央線で1駅隣の「山梨市駅」へ行き、山梨市営バス「フルーツ公園線」に乗ると便利。石和温泉駅からはタクシー約20分です。',
+          destQuery: '山梨県笛吹川フルーツ公園',
+          budget: 500, priceText: '目安 500円', duration: 75,
+          hoursText: '24時間（施設9:00-17:00）', openMin: 9 * 60, closeMin: 17 * 60,
+          tags: ['relax'],
+          note: '園内は坂道が多めです。展望カフェや園内ロードトレインを活用して景色を楽しむのがおすすめです。',
+          desc: 'ガラスドームと花・果樹の丘が広がる絶景公園。カフェやフルーツショップもあり、ほったらかし温泉とセットに最適。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJTUQo5eX-G2ARftDuGDJ9xHg',
+          url: 'https://fuefukigawafp.co.jp/'
+        },
+        {
+          id: 'museum', name: '山梨県立博物館', category: 'sightseeing', rating: 4.1,
+          accessType: 'taxi', accessText: '路線バス約10分 / タクシー12分', accessMin: 12, taxiFareFromStation: 1800, area: 'suburb',
+          busBadge: '🚌 富士急バス「山梨県立博物館」下車すぐ（約10分）',
+          busDetail: '石和温泉駅南口から富士急バス（河口湖駅・富士山駅方面など）で「山梨県立博物館」バス停下車すぐです。',
+          destQuery: '山梨県立博物館',
+          budget: 500, priceText: '目安 500円', duration: 90,
+          hoursText: '9:00-17:00（火休）', openMin: 9 * 60, closeMin: 17 * 60,
+          tags: ['indoor', 'relax'],
+          note: 'バス停が目の前にあり便利。館内はバリアフリーで雨天時にも最適です。',
+          desc: '武田信玄・勝頼など甲斐国の歴史と文化を学べる充実の博物館。常設展500円。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJjRNnB3D8G2ARLswhekKgQZA',
+          url: 'http://www.museum.pref.yamanashi.jp/'
+        },
+        {
+          id: 'asamajinja', name: '甲斐国一宮 浅間神社', category: 'sightseeing', rating: 4.3,
+          accessType: 'taxi', accessText: '路線バス約15分 / タクシー15分', accessMin: 15, taxiFareFromStation: 2200, area: 'ichinomiya',
+          busBadge: '🚌 富士急バス「浅間神社」下車すぐ / タクシー約15分',
+          busDetail: '石和温泉駅南口から富士急バス（富士山駅・河口湖駅方面）で「浅間神社」下車すぐです。',
+          destQuery: '甲斐国一宮 浅間神社 笛吹市',
+          budget: 0, priceText: '無料', duration: 45,
+          hoursText: '24時間（授与所9:00-16:30）', openMin: 9 * 60, closeMin: 16 * 60 + 30,
+          tags: [],
+          note: '境内はほぼ平坦で歩きやすく、静謐な雰囲気で参拝できます。',
+          desc: '富士山噴火鎮護の歴史を持つ甲斐国一宮。荘厳な境内で縁結びや安産祈願のパワースポット。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJIe_Scvv9G2ARBpj7foRmHn0',
+          url: 'http://asamajinja.jp/'
+        },
+        {
+          id: 'hachimangu', name: '石和八幡宮', category: 'sightseeing', rating: 3.9,
+          accessType: 'walk', accessText: '駅徒歩15分', accessMin: 15, area: 'town',
+          busBadge: '🚶 駅徒歩15分',
+          busDetail: '石和温泉駅南口から温泉街を散策しながら徒歩15分ほどです。',
+          destQuery: '石和八幡宮',
+          budget: 0, priceText: '無料', duration: 30,
+          hoursText: '24時間参拝可', openMin: 0, closeMin: 24 * 60,
+          tags: ['walkAll'],
+          note: '温泉街散策の合間に気軽に立ち寄れる落ち着いた神社です。',
+          desc: '武田氏・徳川家康ゆかりの鎮守様。鮮やかな朱色の本殿が美しく温泉街散策の立ち寄りにぴったり。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJuQDXVfb7G2ARl16SLDupIKM',
+          url: 'http://www.yamanashi-jinjacho.or.jp/intro/search/detail/3015'
+        },
+        {
+          id: 'hattake', name: '八田家書院', category: 'sightseeing', rating: 3.8,
+          accessType: 'walk', accessText: '駅徒歩12分', accessMin: 12, area: 'town',
+          busBadge: '🚶 駅徒歩12分',
+          busDetail: '石和温泉駅南口から徒歩12分ほど。マルスワイナリーや石和八幡宮からも近いです。',
+          destQuery: '八田家書院 笛吹市',
+          budget: 200, priceText: '目安 200円', duration: 45,
+          hoursText: '10:00-16:00（土日のみ開館）', openMin: 10 * 60, closeMin: 16 * 60,
+          tags: ['walkAll', 'indoor', 'relax'],
+          note: '土日のみ開館。縁側から日本庭園を眺めながら丁寧な解説が聞ける静かな穴場です。',
+          desc: '慶長6年築の茅葺き豪商屋敷と美しい日本庭園。入館200円で丁寧な解説も聞ける穴場。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJhRjUXQj8G2ARECbIzRTagl0',
+          url: 'https://www.city.fuefuki.yamanashi.jp/shisetsu/bunkazaihoka/054.html'
+        },
+        {
+          id: 'satonoeki', name: '里の駅いちのみや', category: 'sightseeing', rating: 3.6,
+          accessType: 'taxi', accessText: 'タクシー15分 / 路線バス', accessMin: 15, taxiFareFromStation: 2200, area: 'ichinomiya',
+          busBadge: '🚌 富士急バス「一宮」方面 / タクシー約15分',
+          busDetail: '石和温泉駅から一宮方面のバス、またはタクシー約15分。荷物が増える場合は帰りのタクシー利用が楽です。',
+          destQuery: '里の駅いちのみや',
+          budget: 1500, priceText: '目安 1,500円', duration: 45,
+          hoursText: '9:00-18:00', openMin: 9 * 60, closeMin: 18 * 60,
+          tags: ['indoor'],
+          note: 'お土産をたくさん買う場合は宅急便発送も便利です。',
+          desc: '地元産フルーツや野菜、金精軒の信玄餅、山梨ワインがズラリと並ぶ大型直売所。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJkWgYYFT8G2AR54O7hQKRiyE',
+          url: 'http://www.satonoeki.com/'
+        },
+
+        // ===== 足湯・駅中（4件） =====
+        {
+          id: 'ekimae_ashiyu', name: '石和温泉駅前公園 あしゆ（無料）', category: 'ashiyu', rating: 4.1,
+          accessType: 'walk', accessText: '駅徒歩1分', accessMin: 1, area: 'station',
+          busBadge: '🚶 バス不要（駅南口すぐ）',
+          busDetail: '石和温泉駅の南口を出てすぐ目の前にあります。',
+          destQuery: '石和温泉駅前公園 あしゆ',
+          budget: 0, priceText: '無料', duration: 25,
+          hoursText: '10:00-18:00', openMin: 10 * 60, closeMin: 18 * 60,
+          tags: ['near5', 'walkAll', 'indoor', 'relax'],
+          note: '屋根付きで小雨でも安心。帰りの特急待ち時間にぴったりです。',
+          desc: '駅南口すぐの屋根付き無料足湯。帰りの特急待ち時間に最適。タオルは駅1F案内所で200円販売。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJg79ms_77G2ARosRrTQtFt8I',
+          url: 'https://www.city.fuefuki.yamanashi.jp/shisetsu/onsen/007.html'
+        },
+        {
+          id: 'ekinaka_wine', name: '駅中ワインサーバー', category: 'ashiyu', rating: 3.9,
+          accessType: 'walk', accessText: '駅構内 徒歩0分', accessMin: 1, area: 'station',
+          busBadge: '🚶 バス不要（駅1階観光案内所内）',
+          busDetail: '石和温泉駅1階の観光案内所の中にあります。',
+          destQuery: '石和温泉駅 観光案内所',
+          budget: 500, priceText: '目安 500円', duration: 20,
+          hoursText: '9:00-16:00', openMin: 9 * 60, closeMin: 16 * 60,
+          tags: ['near5', 'walkAll', 'indoor'],
+          note: '16:00終了のため、到着直後か温泉前の立ち寄りがおすすめです。',
+          desc: '駅1階観光案内所内。100〜500円で山梨県産ワインを少量セルフ試飲。16時終了に注意。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJl1BOpO_7G2AR4EPNm2fNlUc',
+          url: 'https://www.isawa-kankou.org/news/%E5%A4%A7%E4%BA%BA%E6%B0%97%EF%BC%81%E3%83%AF%E3%82%A4%E3%83%B3%E3%82%B5%E3%83%BC%E3%83%90/'
+        },
+        {
+          id: 'isawayado_ashiyu', name: 'あし湯 いさわ宿', category: 'ashiyu', rating: 4.0,
+          accessType: 'walk', accessText: '駅徒歩15分', accessMin: 15, area: 'town',
+          busBadge: '🚶 駅徒歩15分',
+          busDetail: '温泉街の中にあります。フェイスタオルを1枚持参すると便利です。',
+          destQuery: 'あし湯 いさわ宿 笛吹市',
+          budget: 0, priceText: '無料', duration: 25,
+          hoursText: '10:00-18:00', openMin: 10 * 60, closeMin: 18 * 60,
+          tags: ['walkAll', 'gensen', 'relax'],
+          note: '静かに座って休める源泉かけ流しの無料足湯です。',
+          desc: '温泉街にある静かな無料足湯。源泉かけ流しで隣接する足ツボウォーキングも体験可能。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJCUI6bfb7G2ARzHEyWhpWyPs',
+          url: 'https://www.city.fuefuki.yamanashi.jp/shisetsu/onsen/005.html'
+        },
+        {
+          id: 'gensen_ashiyu', name: '石和源泉足湯ひろば', category: 'ashiyu', rating: 3.6,
+          accessType: 'walk', accessText: '駅徒歩15分', accessMin: 15, area: 'town',
+          busBadge: '🚶 駅徒歩15分',
+          busDetail: '石和温泉駅から徒歩15分ほど。金・土・日のみ営業しています。',
+          destQuery: '石和源泉足湯ひろば',
+          budget: 200, priceText: '目安 200円', duration: 30,
+          hoursText: '金土11:30-17:00 / 日11:30-16:00（月-木休）', openMin: 11 * 60 + 30, closeMin: 17 * 60,
+          tags: ['walkAll', 'relax'],
+          note: '金・土・日のみの営業です。手ぶらでもタオル付き小瓶を購入できます。',
+          desc: '自販機でタオル付き小瓶（200円）を購入して入る足湯。御泉印めぐりにも人気。',
+          mapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!19sChIJXQMyXBD8G2AR1OTCasJpkjg',
+          url: 'https://www.city.fuefuki.yamanashi.jp/shisetsu/onsen/008.html'
+        }
+      ];
+
+      const PRESETS = {
+        classic: { label: '🍷 王道・徒歩でゆったり満喫', ids: ['kosaku', 'mars', 'itoyanagi', 'ekimae_ashiyu'] },
+        cafeHistory: { label: '♨ 源泉かけ流し＆歴史さんぽ（土日向け）', ids: ['miyuki', 'kosaku', 'hattake', 'yatsudoki'] },
+        hottarakashi: { label: '🗻 絶景・ほったらかし温泉満喫', ids: ['kosaku', 'fruitpark', 'hottarakashi', 'tsukinousagi'] }
+      };
+
+      const BUS_GUIDES = [
+        {
+          title: '① 山梨県立博物館・浅間神社 方面',
+          operator: '富士急バス（河口湖駅・富士山駅行きなど）',
+          detail: '石和温泉駅南口ロータリーから乗車。「山梨県立博物館」まで約10分、「浅間神社」まで約15分。観光バス停が目の前にあり便利です。',
+          destQuery: '山梨県立博物館'
+        },
+        {
+          title: '② 桔梗信玄餅・ルミエール・里の駅（一宮方面）',
+          operator: '富士急バス（一宮・勝沼方面）／タクシー約12〜15分',
+          detail: '一宮エリアは路線バスの本数が限られるため、行き・帰りの発車時刻を事前に調べるか、複数スポットをタクシーでつなぐと安心です。',
+          destQuery: '桔梗信玄餅工場テーマパーク'
+        },
+        {
+          title: '③ 笛吹川フルーツ公園・ぷくぷく・ほったらかし温泉',
+          operator: 'JR山梨市駅から市営バス「フルーツ公園線」／タクシー',
+          detail: '石和温泉駅から直通バスはありません。JR中央線で1駅隣の「山梨市駅」から市営バスでフルーツ公園へ行くか、タクシー利用が一般的です。ほったらかし温泉は帰りのタクシー迎車予約が必要です。',
+          destQuery: '山梨県笛吹川フルーツ公園'
+        },
+        {
+          title: '④ 無料送迎バスがある大型温泉施設',
+          operator: 'ホテル内藤・石和健康ランド（駅南口ロータリー発着）',
+          detail: '石和温泉駅南口から各施設の無料送迎バスが定期運行しています（所要約8〜10分）。乗り場と時刻は出発前に公式サイトで確認しておくとスムーズです。',
+          destQuery: 'スパランド ホテル内藤'
+        },
+        {
+          title: '⑤ 甲府・川田（奥藤）・石和温泉街 方面',
+          operator: '山梨交通バス（甲府駅行き・石和温泉街方面）',
+          detail: '川田奥藤第二分店方面や温泉街へは山梨交通の路線バスが利用できます。石和温泉街の中心部は駅から徒歩10〜15分と平坦で歩きやすい距離です。',
+          destQuery: '川田奥藤第二分店'
+        }
+      ];
+
+      const LOCAL_TIPS = [
+        { tag: '特急予約', title: '1. 特急「かいじ」はえきねっとチケットレス予約がお得', body: 'JR東日本の「えきねっと」在来線チケットレス特急券を利用すると、紙のきっぷ発券不要でスマホだけで乗車でき、通常よりお得になります。帰りの新宿行き直通特急も全列車が石和温泉駅に停車します。' },
+        { tag: '手荷物', title: '2. 日帰り荷物は改札外2階北口側のコインロッカー（IC対応・400円〜）へ', body: '駅1階観光案内所の手荷物預かりは宿泊者向けです。日帰りの場合は、改札を出てすぐの2階コンコース北口側にある交通系ICカード対応コインロッカーに預けて身軽に散策しましょう。' },
+        { tag: '営業時間', title: '3. 駅中ワインサーバーは16:00終了！到着直後か温泉前が狙い目', body: '駅1階観光案内所内のワインサーバーは16:00終了です。帰りの特急待ちでは間に合わないことが多いため、到着直後か温泉前の立ち寄りがおすすめです。' },
+        { tag: '現地移動', title: '4. タクシー・無料送迎バスの活用（ほったらかし温泉は帰り予約を）', body: 'ホテル内藤や石和健康ランドは駅から無料送迎バスがあります。ほったらかし温泉やフルーツ公園は高台にあり流しのタクシーがいないため、帰りはタクシー会社へ電話で迎車を依頼すると安心です。' },
+        { tag: '日帰り温泉', title: '5. 旅館の日帰り入浴は清掃時間や最終受付に注意', body: '深雪温泉は13:30最終受付と早めです。糸柳や慶山も清掃時間や宿泊者混雑で制限がかかる場合があるため、当日の電話確認が安心です。' },
+        { tag: '工場見学', title: '6. 桔梗信玄餅工場テーマパークは11:40〜12:20が包装ラインの昼休憩', body: '手作業包装を見学できる工場ラインは11:40〜12:20が昼休憩です。重なった場合はアウトレットや桔梗信玄ソフトを先に楽しみましょう。' },
+        { tag: '足湯', title: '7. 足湯タオルは持参か駅1階観光案内所（200円）で購入可能', body: '駅前あしゆや温泉街の足湯を利用する際はフェイスタオルを1枚持参すると便利です。忘れても駅1階観光案内所で200円で購入できます。' }
+      ];
+
+      let state = {
+        activeTab: 'plan',
+        fontLarge: false,
+        arriveIsawaTime: DEFAULT_ARRIVE_TIME,
+        routeId: 'shinjuku',
+        selected: PRESETS.classic.ids.map((id) => ({ id, duration: getSpotById(id).duration }))
+      };
+
+      let pickerContext = {
+        mode: 'add',
+        replaceIdx: -1,
+        categoryId: 'gourmet',
+        expectedStartMin: 11 * 60 + 15,
+        filters: []
+      };
+
+      function getSpotById(id) { return SPOTS.find((s) => s.id === id); }
+      function isValidTimeStr(str) { return typeof str === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(str); }
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const saved = JSON.parse(raw);
+          if (saved && isValidTimeStr(saved.arriveIsawaTime)) state.arriveIsawaTime = saved.arriveIsawaTime;
+          if (saved && ROUTES[saved.routeId]) state.routeId = saved.routeId;
+          if (saved && typeof saved.fontLarge === 'boolean') state.fontLarge = saved.fontLarge;
+          if (saved && Array.isArray(saved.selected)) {
+            state.selected = saved.selected
+              .filter((item) => item && getSpotById(item.id))
+              .slice(0, MAX_SLOTS)
+              .map((item) => ({ id: item.id, duration: Math.max(15, Math.min(240, Number(item.duration) || getSpotById(item.id).duration)) }));
+          }
+        } catch (err) {}
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            arriveIsawaTime: state.arriveIsawaTime,
+            routeId: state.routeId,
+            fontLarge: state.fontLarge,
+            selected: state.selected
+          }));
+        } catch (err) {}
+      }
+
+      function applyFontSize() {
+        document.documentElement.classList.toggle('font-large', state.fontLarge);
+        document.getElementById('font-size-toggle').setAttribute('aria-pressed', String(state.fontLarge));
+        document.getElementById('font-size-label').textContent = state.fontLarge ? '大きめ' : '標準';
+      }
+
+      function parseTimeToMin(str) {
+        const safe = isValidTimeStr(str) ? str : DEFAULT_ARRIVE_TIME;
+        const [h, m] = safe.split(':').map(Number);
+        return h * 60 + m;
+      }
+      function formatMinToTime(totalMin) {
+        const n = ((totalMin % 1440) + 1440) % 1440;
+        return `${String(Math.floor(n / 60)).padStart(2, '0')}:${String(n % 60).padStart(2, '0')}`;
+      }
+      function formatYen(num) { return `¥${Math.round(Number(num)).toLocaleString('ja-JP')}`; }
+      function rangesOverlap(a1, a2, b1, b2) { return a1 < b2 && b1 < a2; }
+
+      function makeTransitUrl(origin, dest, mode) {
+        return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(dest)}&travelmode=${mode || 'transit'}`;
+      }
+
+      function calcTransferStation(spot, direction) {
+        const prefix = direction === 'fromStation' ? '石和温泉駅から' : '石和温泉駅へ';
+        const origin = direction === 'fromStation' ? STATION_QUERY : spot.destQuery;
+        const dest = direction === 'fromStation' ? spot.destQuery : STATION_QUERY;
+        if (spot.accessType === 'taxi') {
+          const fare = spot.taxiFareFromStation || 1500;
+          return { min: spot.accessMin, taxiFare: fare, walkOk: false, origin, dest, label: `${prefix}タクシー等（約${spot.accessMin}分・1台${formatYen(fare)}）` };
+        }
+        if (spot.accessType === 'shuttle') {
+          return { min: spot.accessMin, taxiFare: 0, walkOk: false, origin, dest, label: `${prefix}無料送迎バス（約${spot.accessMin}分）` };
+        }
+        return { min: Math.max(1, spot.accessMin), taxiFare: 0, walkOk: true, origin, dest, label: `${prefix}徒歩（約${spot.accessMin}分）` };
+      }
+
+      function calcTransferBetween(spotA, spotB) {
+        const origin = spotA.destQuery;
+        const dest = spotB.destQuery;
+        if (spotA.area === 'fruitpark' && spotB.area === 'fruitpark') return { min: 6, taxiFare: 800, walkOk: false, origin, dest, label: 'タクシー移動（約6分・1台¥800）' };
+        if (spotA.area === 'ichinomiya' && spotB.area === 'ichinomiya') return { min: 7, taxiFare: 900, walkOk: false, origin, dest, label: 'タクシー移動（約7分・1台¥900）' };
+        if (spotA.area === 'fruitpark' || spotB.area === 'fruitpark') return { min: 22, taxiFare: 3000, walkOk: false, origin, dest, label: 'バス・タクシー移動（約22分・タクシー1台¥3,000）' };
+        if (spotA.accessType !== 'walk' || spotB.accessType !== 'walk') {
+          const fare = (spotA.area === 'ichinomiya' || spotB.area === 'ichinomiya') ? 1800 : 1200;
+          const min = (spotA.area === 'ichinomiya' || spotB.area === 'ichinomiya') ? 12 : 9;
+          return { min, taxiFare: fare, walkOk: false, origin, dest, label: `バス・タクシー移動（約${min}分・タクシー1台${formatYen(fare)}）` };
+        }
+        if (spotA.area === 'station' && spotB.area === 'station') return { min: 3, taxiFare: 0, walkOk: true, origin, dest, label: '徒歩移動（約3分）' };
+        if ((spotA.area === 'station' && spotB.area === 'near') || (spotA.area === 'near' && spotB.area === 'station')) return { min: 6, taxiFare: 0, walkOk: true, origin, dest, label: '徒歩移動（約6分）' };
+        if (spotA.area === 'town' && spotB.area === 'town') return { min: 8, taxiFare: 0, walkOk: true, origin, dest, label: '徒歩移動（約8分）' };
+        return { min: 10, taxiFare: 0, walkOk: true, origin, dest, label: '徒歩移動（約10分）' };
+      }
+
+      function checkSpotWarnings(spot, startMin, endMin) {
+        const warnings = [];
+        if (spot.lastEntryMin && startMin > spot.lastEntryMin) {
+          warnings.push(`最終受付（${formatMinToTime(spot.lastEntryMin)}）を過ぎています。早めの順番がおすすめです`);
+        }
+        if (Array.isArray(spot.splitWindows)) {
+          const fitsAny = spot.splitWindows.some((w) => startMin >= w.start && endMin <= w.end);
+          if (!fitsAny) warnings.push(`営業時間（${spot.hoursText}）外、または中休みと重なっています`);
+        } else {
+          if (spot.openMin > 0 && startMin < spot.openMin) warnings.push(`営業開始（${formatMinToTime(spot.openMin)}）前の到着予定です`);
+          if (spot.closeMin < 24 * 60 && endMin > spot.closeMin) warnings.push(`営業終了（${formatMinToTime(spot.closeMin)}）を超える予定です`);
+        }
+        if (Array.isArray(spot.specialChecks)) {
+          spot.specialChecks.forEach((chk) => {
+            if (rangesOverlap(startMin, endMin, chk.start, chk.end)) warnings.push(chk.message);
+          });
+        }
+        return warnings;
+      }
+
+      // 石和温泉駅到着時刻を起点に往路逆算・現地スケジュール・帰路を計算
+      function buildItinerary() {
+        const route = ROUTES[state.routeId];
+        const arriveIsawaMin = parseTimeToMin(state.arriveIsawaTime);
+        const startMin = arriveIsawaMin - route.outboundMin;
+        let cursor = arriveIsawaMin;
+
+        const spotSteps = [];
+        let spotBudgetPerPerson = 0;
+        let taxiBudgetPerCar = 0;
+
+        state.selected.forEach((entry, idx) => {
+          const spot = getSpotById(entry.id);
+          if (!spot) return;
+          const transfer = idx === 0
+            ? calcTransferStation(spot, 'fromStation')
+            : calcTransferBetween(getSpotById(state.selected[idx - 1].id), spot);
+
+          cursor += transfer.min;
+          const spotStart = cursor;
+          const spotEnd = spotStart + entry.duration;
+          cursor = spotEnd;
+
+          spotBudgetPerPerson += spot.budget;
+          taxiBudgetPerCar += transfer.taxiFare;
+
+          spotSteps.push({
+            index: idx, spot, duration: entry.duration, transfer,
+            startMin: spotStart, endMin: spotEnd,
+            warnings: checkSpotWarnings(spot, spotStart, spotEnd)
+          });
+        });
+
+        let backToStationTransfer = null;
+        if (spotSteps.length > 0) {
+          backToStationTransfer = calcTransferStation(spotSteps[spotSteps.length - 1].spot, 'toStation');
+          cursor += backToStationTransfer.min;
+          taxiBudgetPerCar += backToStationTransfer.taxiFare;
+        }
+
+        const stationBufferMin = 15;
+        cursor += stationBufferMin;
+        const departIsawaMin = cursor;
+        const arriveShinjukuMin = departIsawaMin + route.returnMin;
+
+        const totalCouple = (route.roundTripFare * 2) + (spotBudgetPerPerson * 2) + taxiBudgetPerCar;
+        const totalPerPerson = Math.round(totalCouple / 2);
+
+        return {
+          route, startMin, arriveIsawaMin, spotSteps,
+          backToStationTransfer, stationBufferMin, departIsawaMin, arriveShinjukuMin,
+          spotBudgetPerPerson, taxiBudgetPerCar, totalPerPerson, totalCouple
+        };
+      }
+
+      function renderTransferHtml(transfer, extraSuffix) {
+        const busUrl = makeTransitUrl(transfer.origin, transfer.dest, 'transit');
+        const walkUrl = makeTransitUrl(transfer.origin, transfer.dest, 'walking');
+        return `
+          <div class="transfer-block">
+            <span class="transfer-pill">↓ ${transfer.label}${extraSuffix || ''}</span>
+            <div class="transfer-actions no-print">
+              <a href="${busUrl}" target="_blank" rel="noopener noreferrer" class="btn-bus-link">🚌 この区間のバス・乗り場を調べる ↗</a>
+              ${transfer.walkOk ? `<a href="${walkUrl}" target="_blank" rel="noopener noreferrer" class="btn-walk-link">🚶 徒歩ルート ↗</a>` : ''}
+            </div>
+          </div>
+        `;
+      }
+
+      function renderArriveControls() {
+        const input = document.getElementById('arrive-time-input');
+        if (input.value !== state.arriveIsawaTime) {
+          input.value = state.arriveIsawaTime;
+        }
+        document.querySelectorAll('.route-opt').forEach((btn) => {
+          const isSelected = btn.getAttribute('data-route') === state.routeId;
+          btn.classList.toggle('selected', isSelected);
+          btn.querySelector('.route-check').textContent = isSelected ? '✓' : '';
+        });
+      }
+
+      function renderPlanSlots() {
+        const plan = buildItinerary();
+        document.getElementById('plan-depart-pill').textContent = `${plan.route.depPillPrefix} ${formatMinToTime(plan.startMin)}`;
+        document.getElementById('nav-count-badge').textContent = String(state.selected.length);
+        document.getElementById('header-return-time').textContent = formatMinToTime(plan.arriveShinjukuMin);
+
+        const container = document.getElementById('slot-container');
+        let html = '';
+
+        plan.spotSteps.forEach((step, idx) => {
+          const act = getActivityMeta(step.spot.category);
+          const isFirst = idx === 0;
+          const isLast = idx === plan.spotSteps.length - 1;
+
+          html += renderTransferHtml(step.transfer);
+
+          const warningHtml = step.warnings.length > 0
+            ? step.warnings.map((w) => `<div class="warning-box"><span>⚠</span><span>${w}</span></div>`).join('')
+            : '';
+
+          html += `
+            <article class="slot-card">
+              <div class="slot-bar ${act.bar}"></div>
+              <div class="slot-body">
+                <div class="slot-header">
+                  <div class="slot-order-badge">
+                    <span class="slot-num-pill">${idx + 1}番目</span>
+                    <span class="slot-time-text">${formatMinToTime(step.startMin)}〜${formatMinToTime(step.endMin)}</span>
+                  </div>
+                  <span class="badge ${act.badge}">${act.emoji} ${act.label}</span>
+                </div>
+
+                <h3 class="spot-name">${step.spot.name}</h3>
+                <div class="spot-meta">
+                  <span style="font-weight:700; color:var(--sumi);">${step.spot.priceText}</span>
+                  <span>${step.spot.accessText}</span>
+                  <button type="button" data-open-detail="${step.spot.id}" style="color:var(--bordeaux); text-decoration:underline; font-weight:700;">詳細・地図</button>
+                </div>
+
+                <div class="bus-box"><strong>${step.spot.busBadge}</strong></div>
+                ${warningHtml}
+
+                <div class="step-controls">
+                  <div class="ctrl-group">
+                    <button type="button" data-dur-delta="-15" data-idx="${idx}" class="ctrl-btn">-15分</button>
+                    <span class="dur-val">${step.duration}分</span>
+                    <button type="button" data-dur-delta="15" data-idx="${idx}" class="ctrl-btn">+15分</button>
+                  </div>
+                  <div class="ctrl-group">
+                    <button type="button" data-replace-idx="${idx}" class="ctrl-btn change">変更</button>
+                    <button type="button" data-move="up" data-idx="${idx}" ${isFirst ? 'disabled' : ''} class="ctrl-btn" aria-label="上へ">↑</button>
+                    <button type="button" data-move="down" data-idx="${idx}" ${isLast ? 'disabled' : ''} class="ctrl-btn" aria-label="下へ">↓</button>
+                    <button type="button" data-remove="${idx}" class="ctrl-btn danger" aria-label="削除">×</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          `;
+        });
+
+        if (state.selected.length < MAX_SLOTS) {
+          const nextOrder = state.selected.length + 1;
+          const nextBaseTime = plan.spotSteps.length > 0
+            ? plan.spotSteps[plan.spotSteps.length - 1].endMin + 10
+            : plan.arriveIsawaMin + 8;
+
+          html += `
+            <div class="slot-card empty-slot">
+              <div class="slot-body">
+                <div class="slot-header" style="margin-bottom:6px;">
+                  <div class="slot-order-badge">
+                    <span class="slot-num-pill">${nextOrder}番目を追加</span>
+                    <span style="font-size:0.84rem; color:var(--sumi-light); font-weight:700;">${formatMinToTime(nextBaseTime)}頃〜</span>
+                  </div>
+                </div>
+                <p style="font-size:0.88rem; color:var(--sumi);">
+                  ${nextOrder === 1 ? '石和温泉に着いたら、まず何をしますか？' : `${nextOrder}番目に何をしたいか選んでください`}
+                </p>
+                <div class="activity-grid">
+                  ${ACTIVITIES.map((act) => `
+                    <button type="button" data-pick-activity="${act.id}" class="activity-btn">
+                      <span class="activity-emoji">${act.emoji}</span>
+                      <span class="activity-label">${act.label}</span>
+                      <span class="activity-sub">${act.sub}</span>
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        if (state.selected.length > 0) {
+          html += `
+            <button type="button" id="plan-goto-shiori" class="btn-primary-solid" style="margin-top:4px;">
+              この内容で「2. しおり確認」を見る ›
+            </button>
+          `;
+        }
+
+        container.innerHTML = html;
+        const gotoBtn = document.getElementById('plan-goto-shiori');
+        if (gotoBtn) gotoBtn.addEventListener('click', () => switchTab('shiori'));
+      }
+
+      function renderShiori() {
+        const plan = buildItinerary();
+        document.getElementById('summary-route-pill').textContent = plan.route.shortName;
+        document.getElementById('summary-arrive-isawa').textContent = formatMinToTime(plan.arriveIsawaMin);
+        document.getElementById('summary-return-time').textContent = formatMinToTime(plan.arriveShinjukuMin);
+        document.getElementById('summary-spot-count').textContent = `選択 ${state.selected.length}件`;
+        document.getElementById('summary-budget-per-person').textContent = formatYen(plan.totalPerPerson);
+        document.getElementById('summary-budget-couple').textContent = formatYen(plan.totalCouple);
+
+        const container = document.getElementById('timeline-container');
+        if (state.selected.length === 0) {
+          container.innerHTML = `
+            <div class="card" style="text-align:center; padding:24px 16px;">
+              <p class="section-title" style="margin-bottom:8px;">予定がまだ入っていません</p>
+              <p class="sub-desc">「1. 予定をつくる」から、やりたいことを順番に選んでください。</p>
+              <button type="button" id="empty-goto-plan" class="btn-primary-outline">予定をつくりに行く</button>
+            </div>
+          `;
+          const btn = document.getElementById('empty-goto-plan');
+          if (btn) btn.addEventListener('click', () => switchTab('plan'));
+        } else {
+          let html = `
+            <div class="card print-break-avoid">
+              <div class="section-head" style="margin-bottom:0;">
+                <span class="pill-accent">往路・特急直通</span>
+                <span style="font-size:0.82rem; color:var(--sumi-light);">1人片道 約${formatYen(plan.route.outboundFare)}</span>
+              </div>
+              <div class="transit-card-rows">
+                <div class="transit-row"><span class="transit-time bordeaux">${formatMinToTime(plan.startMin)}</span><strong>${plan.route.depStation} 出発目安</strong></div>
+                <div class="transit-mid">${plan.route.outboundNote}</div>
+                <div class="transit-row"><span class="transit-time matcha">${formatMinToTime(plan.arriveIsawaMin)}</span><strong>石和温泉駅 到着（設定時刻）</strong></div>
+              </div>
+            </div>
+          `;
+
+          plan.spotSteps.forEach((step, idx) => {
+            const act = getActivityMeta(step.spot.category);
+            html += renderTransferHtml(step.transfer);
+            const warningHtml = step.warnings.length > 0
+              ? step.warnings.map((w) => `<div class="warning-box"><span>⚠</span><span>${w}</span></div>`).join('')
+              : '';
+            html += `
+              <div class="slot-card print-break-avoid">
+                <div class="slot-bar ${act.bar}"></div>
+                <div class="slot-body">
+                  <div class="slot-header" style="margin-bottom:6px;">
+                    <div class="slot-order-badge">
+                      <span class="slot-num-pill">${idx + 1}番目</span>
+                      <span class="slot-time-text">${formatMinToTime(step.startMin)} 〜 ${formatMinToTime(step.endMin)}</span>
+                    </div>
+                    <span class="badge ${act.badge}">${act.emoji} ${act.label}</span>
+                  </div>
+                  <h3 class="spot-name">${step.spot.name}</h3>
+                  <div class="spot-meta">
+                    <span>${step.spot.priceText}（1人）</span>
+                    <span>滞在 ${step.duration}分</span>
+                    <button type="button" data-open-detail="${step.spot.id}" class="no-print" style="color:var(--bordeaux); text-decoration:underline; font-weight:700;">詳細・地図</button>
+                  </div>
+                  <div class="bus-box"><strong>${step.spot.busBadge}</strong><br>${step.spot.busDetail}</div>
+                  ${warningHtml}
+                </div>
+              </div>
+            `;
+          });
+
+          if (plan.backToStationTransfer) {
+            html += renderTransferHtml(plan.backToStationTransfer, ' ＋ 乗車余裕15分');
+          }
+
+          html += `
+            <div class="card print-break-avoid">
+              <div class="section-head" style="margin-bottom:0;">
+                <span class="badge badge-cat-onsen" style="border-radius:999px; padding:3px 10px;">復路・新宿駅直通</span>
+                <span style="font-size:0.82rem; color:var(--sumi-light);">1人片道 約${formatYen(plan.route.returnFare)}</span>
+              </div>
+              <div class="transit-card-rows">
+                <div class="transit-row"><span class="transit-time bordeaux">${formatMinToTime(plan.departIsawaMin)}</span><strong>石和温泉駅 出発（特急「かいじ」直通）</strong></div>
+                <div class="transit-mid">乗り換えなし・所要約1時間35分（乗車余裕15分込み）</div>
+                <div class="transit-row"><span class="transit-time">${formatMinToTime(plan.arriveShinjukuMin)}</span><strong>新宿駅 到着予定</strong></div>
+              </div>
+            </div>
+          `;
+          container.innerHTML = html;
+        }
+
+        const breakdownEl = document.getElementById('budget-breakdown-body');
+        const spotRows = plan.spotSteps.map((s) => `
+          <div class="budget-row indent">
+            <span>${s.spot.name}（2名）</span>
+            <span class="budget-val">${s.spot.budget === 0 ? '無料' : formatYen(s.spot.budget * 2)}</span>
+          </div>
+        `).join('');
+
+        breakdownEl.innerHTML = `
+          <div class="budget-row">
+            <span>電車代合計（${plan.route.shortName}・2名）</span>
+            <span class="budget-val">${formatYen(plan.route.roundTripFare * 2)}</span>
+          </div>
+          ${plan.taxiBudgetPerCar > 0 ? `
+            <div class="budget-row">
+              <span>現地タクシー代目安（1台合計）</span>
+              <span class="budget-val">${formatYen(plan.taxiBudgetPerCar)}</span>
+            </div>
+          ` : ''}
+          ${spotRows}
+          <div class="budget-row total-couple">
+            <span>2名 合計目安</span>
+            <span class="budget-val serif">${formatYen(plan.totalCouple)}</span>
+          </div>
+          <div class="budget-row total-person">
+            <span>1人あたり目安</span>
+            <span class="budget-val serif">${formatYen(plan.totalPerPerson)}</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--sumi-light); margin-top:4px;">
+            ※帰りは新宿駅直通（片道4,000円）で計算しています。タクシー代は2名割勘です。
+          </p>
+        `;
+      }
+
+      function renderBusAndTips() {
+        document.getElementById('bus-guide-container').innerHTML = BUS_GUIDES.map((g) => `
+          <div class="bus-guide-card">
+            <h3 class="bus-dest-title">${g.title}</h3>
+            <div class="badge-row"><span class="badge badge-bus">🚌 ${g.operator}</span></div>
+            <p class="bus-detail-text">${g.detail}</p>
+            <a href="${makeTransitUrl(STATION_QUERY, g.destQuery, 'transit')}" target="_blank" rel="noopener noreferrer" class="btn-bus-link" style="justify-content:center;">
+              🚌 石和温泉駅からのバス時刻・経路を調べる ↗
+            </a>
+          </div>
+        `).join('');
+
+        document.getElementById('tips-container').innerHTML = LOCAL_TIPS.map((tip, idx) => {
+          const open = idx < 2;
+          return `
+            <div class="tip-item" data-open="${open}">
+              <button type="button" class="tip-trigger">
+                <div>
+                  <span class="tip-tag">${tip.tag}</span>
+                  <h3 class="tip-title">${tip.title}</h3>
+                </div>
+                <svg class="tip-chevron" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+              <div class="tip-body ${open ? '' : 'hidden'}">${tip.body}</div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      function openPicker(mode, categoryId, replaceIdx) {
+        const plan = buildItinerary();
+        let baseMin = plan.arriveIsawaMin + 8;
+        let orderNum = state.selected.length + 1;
+
+        if (mode === 'replace' && replaceIdx >= 0 && plan.spotSteps[replaceIdx]) {
+          orderNum = replaceIdx + 1;
+          baseMin = plan.spotSteps[replaceIdx].startMin;
+        } else if (plan.spotSteps.length > 0) {
+          baseMin = plan.spotSteps[plan.spotSteps.length - 1].endMin + 10;
+        }
+
+        pickerContext = { mode, replaceIdx: replaceIdx ?? -1, categoryId, expectedStartMin: baseMin, filters: [] };
+
+        const act = getActivityMeta(categoryId);
+        document.getElementById('picker-accent-bar').className = `slot-bar ${act.bar}`;
+        document.getElementById('picker-sub').textContent = `${orderNum}番目（到着目安 ${formatMinToTime(baseMin)}頃）`;
+        document.getElementById('picker-title').textContent = `${act.emoji} ${act.label}場所を選ぶ`;
+
+        renderPickerContent();
+        document.getElementById('picker-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function renderPickerContent() {
+        const filtersEl = document.getElementById('picker-filters');
+        filtersEl.innerHTML = PICKER_CONDITIONS.map((c) => {
+          const active = pickerContext.filters.includes(c.id);
+          return `<button type="button" data-picker-cond="${c.id}" class="filter-chip ${active ? 'active' : ''}">${active ? '✓ ' : ''}${c.label}</button>`;
+        }).join('');
+
+        const candidates = SPOTS.filter((s) => {
+          if (s.category !== pickerContext.categoryId) return false;
+          return pickerContext.filters.every((f) => (s.tags || []).includes(f));
+        });
+
+        const listEl = document.getElementById('picker-list');
+        if (candidates.length === 0) {
+          listEl.innerHTML = `<div class="card" style="text-align:center;">条件に合う場所がありません。絞り込みを解除してお試しください。</div>`;
+          return;
+        }
+
+        listEl.innerHTML = candidates.map((spot) => {
+          const warnings = checkSpotWarnings(spot, pickerContext.expectedStartMin, pickerContext.expectedStartMin + spot.duration);
+          const isOk = warnings.length === 0;
+          const alreadySelected = state.selected.some((item, i) => item.id === spot.id && i !== pickerContext.replaceIdx);
+
+          return `
+            <div class="picker-card">
+              <div class="badge-row">
+                <span class="badge ${isOk ? 'badge-ok' : 'badge-warn'}">${isOk ? '✓ この時間OK' : '⚠ 営業時間・注意あり'}</span>
+                <span class="badge badge-walk">${spot.accessText}</span>
+                <span class="badge" style="background:#FEF3C7; color:#78350F;">★${spot.rating.toFixed(1)}</span>
+              </div>
+
+              <div>
+                <h3 class="spot-name">${spot.name}</h3>
+                <div class="spot-meta">
+                  <span style="font-weight:700; color:var(--sumi);">${spot.priceText}</span>
+                  <span>滞在 約${spot.duration}分</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--sumi-light); margin-top:4px;">営業：${spot.hoursText}</div>
+              </div>
+
+              <p class="spot-desc">${spot.desc}</p>
+              <div class="bus-box">${spot.busBadge}</div>
+              ${spot.note ? `<div class="note-box">💡 ${spot.note}</div>` : ''}
+              ${warnings.length > 0 ? `<div class="warning-box"><span>⚠</span><span>${warnings[0]}</span></div>` : ''}
+
+              <div class="btn-stack">
+                <button type="button" data-select-spot="${spot.id}" class="btn-primary-solid" ${alreadySelected ? 'style="background:var(--matcha);"' : ''}>
+                  ${alreadySelected ? 'すでに予定に入っています（再度選ぶ）' : '＋ この場所を選ぶ'}
+                </button>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                  <a href="${makeTransitUrl(STATION_QUERY, spot.destQuery, 'transit')}" target="_blank" rel="noopener noreferrer" class="btn-bus-link" style="justify-content:center;">🚌 バス経路 ↗</a>
+                  <button type="button" data-open-detail="${spot.id}" class="btn-secondary" style="min-height:44px;">詳細・地図</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      function closePicker() {
+        document.getElementById('picker-modal').classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+
+      function openSpotDetail(spotId) {
+        const spot = getSpotById(spotId);
+        if (!spot) return;
+        const act = getActivityMeta(spot.category);
+        document.getElementById('detail-accent-bar').className = `slot-bar ${act.bar}`;
+        const catBadge = document.getElementById('detail-cat-badge');
+        catBadge.textContent = `${act.emoji} ${act.label}`;
+        catBadge.className = `badge ${act.badge}`;
+        document.getElementById('detail-rating-badge').textContent = `★${spot.rating.toFixed(1)}`;
+
+        document.getElementById('detail-body').innerHTML = `
+          <div>
+            <h2 id="modal-spot-title" class="spot-name" style="font-size:1.2rem; margin-bottom:8px;">${spot.name}</h2>
+            <p class="spot-desc">${spot.desc}</p>
+          </div>
+          <div class="bus-box">
+            <strong style="display:block; margin-bottom:4px;">🚌 アクセス・バス案内</strong>
+            ${spot.busBadge}<br>${spot.busDetail}
+          </div>
+          ${spot.note ? `<div class="note-box"><strong>💡 メモ：</strong>${spot.note}</div>` : ''}
+          <div class="card" style="font-size:0.9rem;">
+            <div><strong style="color:var(--gold);">目安料金：</strong>${spot.priceText}（1人）</div>
+            <div style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border-warm);"><strong style="color:var(--gold);">営業時間：</strong>${spot.hoursText}</div>
+            <div style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border-warm);"><strong style="color:var(--gold);">標準滞在：</strong>約${spot.duration}分</div>
+          </div>
+          <div class="btn-stack">
+            <a href="${makeTransitUrl(STATION_QUERY, spot.destQuery, 'transit')}" target="_blank" rel="noopener noreferrer" class="btn-bus-link" style="min-height:48px; justify-content:center; font-size:0.92rem;">
+              🚌 石和温泉駅からのバス・乗り場を調べる ↗
+            </a>
+            <a href="${spot.mapUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary-outline">
+              📷 Googleマップで写真・場所を見る ↗
+            </a>
+            ${spot.url ? `<a href="${spot.url}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="background:#fff;">🌐 公式サイトを見る ↗</a>` : ''}
+          </div>
+        `;
+        document.getElementById('detail-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeSpotDetail() {
+        document.getElementById('detail-modal').classList.add('hidden');
+        if (document.getElementById('picker-modal').classList.contains('hidden')) {
+          document.body.style.overflow = '';
+        }
+      }
+
+      function switchTab(tabId) {
+        state.activeTab = tabId;
+        ['plan', 'shiori', 'bus'].forEach((k) => {
+          document.getElementById(`panel-${k}`).classList.toggle('hidden', k !== tabId);
+        });
+        document.querySelectorAll('.nav-tab').forEach((btn) => {
+          btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      let toastTimer = null;
+      function showToast(msg) {
+        const el = document.getElementById('toast');
+        document.getElementById('toast-inner').textContent = msg;
+        el.classList.add('show');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+      }
+
+      function copyShioriText() {
+        const plan = buildItinerary();
+        const lines = [
+          '【石和温泉 日帰り旅のしおり（帰り・新宿駅直通）】',
+          `ルート：${plan.route.name}`,
+          `2名合計目安：約${plan.totalCouple.toLocaleString()}円（1人約${plan.totalPerPerson.toLocaleString()}円）`,
+          '',
+          `${formatMinToTime(plan.startMin)}頃 ${plan.route.depStation} 出発目安`,
+          `  ↓ 特急「かいじ」直通`,
+          `${formatMinToTime(plan.arriveIsawaMin)} 石和温泉駅 到着`,
+          ''
+        ];
+        plan.spotSteps.forEach((step, i) => {
+          lines.push(`  (${step.transfer.label})`);
+          lines.push(`${formatMinToTime(step.startMin)}〜${formatMinToTime(step.endMin)} ${i + 1}. ${step.spot.name}（${step.spot.priceText}）`);
+          lines.push(`   ${step.spot.busBadge}`);
+          if (step.warnings.length > 0) step.warnings.forEach((w) => lines.push(`   ⚠ ${w}`));
+        });
+        lines.push('');
+        if (plan.backToStationTransfer) lines.push(`  (${plan.backToStationTransfer.label}＋乗車余裕15分)`);
+        lines.push(`${formatMinToTime(plan.departIsawaMin)} 石和温泉駅 出発（特急「かいじ」直通）`);
+        lines.push(`${formatMinToTime(plan.arriveShinjukuMin)} 新宿駅 到着予定`);
+
+        const text = lines.join('\n');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => showToast('しおりをコピーしました！LINEに貼れます')).catch(() => fallbackCopy(text));
+        } else {
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.top = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showToast('しおりをコピーしました！LINEに貼れます');
+        } catch (err) {
+          showToast('コピーに失敗しました');
+        }
+      }
+
+      function renderAll() {
+        renderArriveControls();
+        renderPlanSlots();
+        renderShiori();
+      }
+
+      function bindEvents() {
+        document.getElementById('font-size-toggle').addEventListener('click', () => {
+          state.fontLarge = !state.fontLarge;
+          applyFontSize();
+          saveState();
+          showToast(state.fontLarge ? '文字を大きめにしました' : '文字を標準サイズに戻しました');
+        });
+
+        document.querySelectorAll('.nav-tab').forEach((btn) => {
+          btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+        });
+        document.getElementById('header-shiori-jump').addEventListener('click', () => switchTab('shiori'));
+
+        // 石和温泉駅の到着時刻（自由入力＋±15分調整）
+        const arriveInput = document.getElementById('arrive-time-input');
+        function handleArriveInput(e) {
+          const val = e.target.value;
+          if (isValidTimeStr(val)) {
+            state.arriveIsawaTime = val;
+            saveState();
+            renderAll();
+          }
+        }
+        arriveInput.addEventListener('change', handleArriveInput);
+        arriveInput.addEventListener('input', handleArriveInput);
+
+        function shiftArrive(deltaMin) {
+          const curMin = parseTimeToMin(state.arriveIsawaTime);
+          const nextMin = Math.max(6 * 60, Math.min(20 * 60, curMin + deltaMin));
+          state.arriveIsawaTime = formatMinToTime(nextMin);
+          saveState();
+          renderAll();
+        }
+        document.getElementById('arr-minus-btn').addEventListener('click', () => shiftArrive(-15));
+        document.getElementById('arr-plus-btn').addEventListener('click', () => shiftArrive(15));
+
+        document.getElementById('route-buttons').addEventListener('click', (e) => {
+          const btn = e.target.closest('.route-opt');
+          if (!btn) return;
+          state.routeId = btn.getAttribute('data-route');
+          saveState();
+          renderAll();
+        });
+
+        document.querySelectorAll('.preset-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const p = PRESETS[btn.getAttribute('data-preset')];
+            if (!p) return;
+            state.selected = p.ids.map((id) => ({ id, duration: getSpotById(id).duration }));
+            saveState();
+            renderAll();
+            showToast(`「${p.label}」をセットしました`);
+          });
+        });
+
+        document.getElementById('slot-container').addEventListener('click', (e) => {
+          const actBtn = e.target.closest('[data-pick-activity]');
+          if (actBtn) { openPicker('add', actBtn.getAttribute('data-pick-activity'), -1); return; }
+
+          const repBtn = e.target.closest('[data-replace-idx]');
+          if (repBtn) {
+            const idx = Number(repBtn.getAttribute('data-replace-idx'));
+            const cur = state.selected[idx];
+            if (cur) openPicker('replace', getSpotById(cur.id).category, idx);
+            return;
+          }
+
+          const detBtn = e.target.closest('[data-open-detail]');
+          if (detBtn) { openSpotDetail(detBtn.getAttribute('data-open-detail')); return; }
+
+          const durBtn = e.target.closest('[data-dur-delta]');
+          if (durBtn) {
+            const idx = Number(durBtn.getAttribute('data-idx'));
+            const delta = Number(durBtn.getAttribute('data-dur-delta'));
+            const item = state.selected[idx];
+            if (item) {
+              item.duration = Math.max(15, Math.min(240, item.duration + delta));
+              saveState();
+              renderAll();
+            }
+            return;
+          }
+
+          const moveBtn = e.target.closest('[data-move]');
+          if (moveBtn && !moveBtn.disabled) {
+            const idx = Number(moveBtn.getAttribute('data-idx'));
+            const swap = moveBtn.getAttribute('data-move') === 'up' ? idx - 1 : idx + 1;
+            if (swap >= 0 && swap < state.selected.length) {
+              const tmp = state.selected[idx];
+              state.selected[idx] = state.selected[swap];
+              state.selected[swap] = tmp;
+              saveState();
+              renderAll();
+            }
+            return;
+          }
+
+          const remBtn = e.target.closest('[data-remove]');
+          if (remBtn) {
+            const idx = Number(remBtn.getAttribute('data-remove'));
+            const removed = state.selected[idx];
+            if (removed) {
+              const spot = getSpotById(removed.id);
+              state.selected.splice(idx, 1);
+              saveState();
+              renderAll();
+              showToast(`「${spot.name}」を外しました`);
+            }
+          }
+        });
+
+        document.getElementById('timeline-container').addEventListener('click', (e) => {
+          const detBtn = e.target.closest('[data-open-detail]');
+          if (detBtn) openSpotDetail(detBtn.getAttribute('data-open-detail'));
+        });
+
+        document.getElementById('picker-filters').addEventListener('click', (e) => {
+          const chip = e.target.closest('[data-picker-cond]');
+          if (!chip) return;
+          const id = chip.getAttribute('data-picker-cond');
+          const idx = pickerContext.filters.indexOf(id);
+          if (idx >= 0) pickerContext.filters.splice(idx, 1);
+          else pickerContext.filters.push(id);
+          renderPickerContent();
+        });
+
+        document.getElementById('picker-list').addEventListener('click', (e) => {
+          const detBtn = e.target.closest('[data-open-detail]');
+          if (detBtn) { openSpotDetail(detBtn.getAttribute('data-open-detail')); return; }
+
+          const selBtn = e.target.closest('[data-select-spot]');
+          if (selBtn) {
+            const spot = getSpotById(selBtn.getAttribute('data-select-spot'));
+            if (!spot) return;
+            if (pickerContext.mode === 'replace' && pickerContext.replaceIdx >= 0) {
+              state.selected[pickerContext.replaceIdx] = { id: spot.id, duration: spot.duration };
+              showToast(`${pickerContext.replaceIdx + 1}番目を「${spot.name}」に変更しました`);
+            } else {
+              state.selected.push({ id: spot.id, duration: spot.duration });
+              showToast(`${state.selected.length}番目に「${spot.name}」を追加しました`);
+            }
+            saveState();
+            renderAll();
+            closePicker();
+          }
+        });
+
+        document.getElementById('picker-close-btn').addEventListener('click', closePicker);
+        document.getElementById('picker-backdrop').addEventListener('click', closePicker);
+
+        document.getElementById('detail-close-btn').addEventListener('click', closeSpotDetail);
+        document.getElementById('detail-backdrop').addEventListener('click', closeSpotDetail);
+
+        document.getElementById('copy-shiori-btn').addEventListener('click', copyShioriText);
+        document.getElementById('print-shiori-btn').addEventListener('click', () => window.print());
+        document.getElementById('reset-shiori-btn').addEventListener('click', () => {
+          if (state.selected.length === 0) { showToast('すでに空です'); return; }
+          document.getElementById('confirm-modal').classList.remove('hidden');
+        });
+        document.getElementById('confirm-cancel-btn').addEventListener('click', () => {
+          document.getElementById('confirm-modal').classList.add('hidden');
+        });
+        document.getElementById('confirm-ok-btn').addEventListener('click', () => {
+          state.selected = [];
+          saveState();
+          renderAll();
+          document.getElementById('confirm-modal').classList.add('hidden');
+          showToast('予定をクリアしました');
+        });
+
+        document.getElementById('tips-container').addEventListener('click', (e) => {
+          const trigger = e.target.closest('.tip-trigger');
+          if (!trigger) return;
+          const item = trigger.closest('.tip-item');
+          const isOpen = item.getAttribute('data-open') === 'true';
+          item.setAttribute('data-open', String(!isOpen));
+          item.querySelector('.tip-body').classList.toggle('hidden', isOpen);
+        });
+
+        let allOpen = false;
+        document.getElementById('toggle-all-tips-btn').addEventListener('click', (e) => {
+          allOpen = !allOpen;
+          document.querySelectorAll('.tip-item').forEach((item) => {
+            item.setAttribute('data-open', String(allOpen));
+            item.querySelector('.tip-body').classList.toggle('hidden', !allOpen);
+          });
+          e.currentTarget.textContent = allOpen ? 'すべて閉じる' : 'すべて開く';
+        });
+      }
+
+      loadState();
+      applyFontSize();
+      renderAll();
+      renderBusAndTips();
+      bindEvents();
+    })();
+  </script>
+</body>
+</html>
